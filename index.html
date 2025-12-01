@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Electronics Projects</title>
+
+<style>
+    /* GLOBAL FONT */
+    * {
+        font-family: "Times New Roman", serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* DARK DYNAMIC BACKGROUND */
+    body {
+        background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #2c2c54);
+        background-size: 300% 300%;
+        animation: darkMove 18s ease infinite;
+        color: white;
+    }
+
+    @keyframes darkMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* GLASS CONTAINER */
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 25px;
+        border-radius: 12px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    h1, h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        border-bottom: 2px solid rgba(255,255,255,0.2);
+        padding-bottom: 5px;
+        margin-top: 30px;
+    }
+
+    ul {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+
+    /* FORM */
+    form input, form textarea, form select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+    }
+
+    form button {
+        background: #444;
+        padding: 12px 20px;
+        border: none;
+        width: 100%;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 15px;
+        color: white;
+    }
+
+    form button:hover {
+        background: #666;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Custom Electronics & Microcontroller Projects</h1>
+    <p style="text-align:center; margin-bottom:20px;">
+        Arduino • ESP32/ESP8266 • AT89C51/52 • Sensors • Automation • Robotics  
+        <br>Custom Project Starting Price: <b>₹600</b>
+    </p>
+
+    <!-- PROJECT LIST -->
+    <h2>Available Project Ideas</h2>
+
+    <h3>🔵 Arduino Projects</h3>
+    <ul>
+        <li>Home Automation System</li>
+        <li>Smart Dustbin</li>
+        <li>RFID Door Lock</li>
+        <li>Weather Station</li>
+        <li>Digital Thermometer</li>
+    </ul>
+
+    <h3>🟢 ESP32 / ESP8266 (IoT)</h3>
+    <ul>
+        <li>WiFi Home Automation</li>
+        <li>IoT Temperature Monitor (Firebase)</li>
+        <li>IoT Motion Alert</li>
+        <li>ESP32 Camera System</li>
+    </ul>
+
+    <h3>🟣 AT89C51 / 52</h3>
+    <ul>
+        <li>Traffic Light Controller</li>
+        <li>Mini EVM</li>
+        <li>LCD Timer</li>
+        <li>Motor Speed Controller</li>
+    </ul>
+
+    <p><b>Note:</b> You can request any custom project not listed above.</p>
+
+    <!-- CUSTOM REQUEST FORM -->
+    <h2>Custom Project Request Form</h2>
+
+    <form>
+        <label>Your Name</label>
+        <input type="text" placeholder="Enter your name" required>
+
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" required>
+
+        <label>Phone Number</label>
+        <input type="text" placeholder="Enter phone number" required>
+
+        <label>Select Controller</label>
+        <select required>
+            <option value="">Choose one</option>
+            <option>Arduino</option>
+            <option>ESP8266</option>
+            <option>ESP32</option>
+            <option>AT89C51</option>
+            <option>AT89C52</option>
+        </select>
+
+        <label>Project Details</label>
+        <textarea rows="5" placeholder="Describe your custom project..." required></textarea>
+
+        <button type="submit">Submit Request</button>
+    </form>
+
+</div>
+
+</body>
+</html>
