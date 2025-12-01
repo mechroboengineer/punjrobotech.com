@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PunjRoBoTech Projects</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- EmailJS SDK -->
+<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+<script>
+(function(){
+    emailjs.init("zQnKseqHL3Yb7q0VN"); // your public key
+})();
+</script>
 <style>
   body { font-family: "Times New Roman", serif; }
 </style>
@@ -30,7 +37,6 @@
   </div>
 </section>
 
-
 <!-- ===================== PROJECTS SECTION ===================== -->
 <section id="projects" class="hidden p-6 min-h-screen">
   
@@ -47,7 +53,6 @@
     Back to Home
   </button>
 </section>
-
 
 <!-- ===================== CUSTOM PROJECT SECTION ===================== -->
 <section id="custom" class="hidden p-6 min-h-screen max-w-xl mx-auto">
@@ -70,7 +75,6 @@
 
 </section>
 
-
 <!-- ===================== CART MODAL ===================== -->
 <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4">
   <div class="bg-gray-800 p-6 rounded-lg w-full max-w-md">
@@ -87,7 +91,6 @@
   </div>
 </div>
 
-
 <!-- ===================== CONTACT FORM MODAL ===================== -->
 <div id="contact-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4">
   <form id="contact-form" onsubmit="submitContact(event)" class="bg-gray-800 p-6 rounded-lg w-full max-w-md space-y-4">
@@ -102,12 +105,10 @@
   </form>
 </div>
 
-
 <!-- ===================== FOOTER ===================== -->
 <footer class="text-center py-6 text-gray-400">
   © 2025 punjrobotech.com — All rights reserved.
 </footer>
-
 
 <!-- ===================== JAVASCRIPT ===================== -->
 <script>
@@ -122,9 +123,9 @@ const predefinedProjects = [
   "Home Automation System",
   "Smart Irrigation System",
   "Temperature Monitoring System",
-  "Arduino Bluetooth Car",
+  "ESP32 WiFi Car",
   "Arduino Line Follower Robot",
-  "ESP 32 Water Level Monitering System"
+  "AT89C51 LED Controller"
 ];
 
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -204,33 +205,46 @@ function closeContact() {
   document.getElementById("contact-modal").classList.add("hidden");
 }
 
-/* ------------------- Submit Contact ------------------- */
+/* ------------------- Submit Contact via EmailJS ------------------- */
 function submitContact(event) {
   event.preventDefault();
 
-  let summary =
-    "New Order:\n\nName: " + document.getElementById("name").value +
-    "\nPhone: " + document.getElementById("phone").value +
-    "\nAddress: " + document.getElementById("address").value +
-    "\n\nProjects:\n" + cart.join("\n");
+  let templateParams = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    address: document.getElementById("address").value,
+    projects: cart.join(", ")
+  };
 
-  alert("ORDER SUMMARY:\n\n" + summary);
-
-  localStorage.removeItem("cart");
-  location.reload();
+  emailjs.send('service_q8j8kxf','template_ABC123XYZ', templateParams)
+    .then(function(response) {
+       alert('Order sent successfully!');
+       localStorage.removeItem("cart");
+       location.reload();
+    }, function(error) {
+       alert('Failed to send order, please try manually.');
+    });
 }
 
-/* ------------------- Custom Project Form ------------------- */
+/* ------------------- Custom Project Form via EmailJS ------------------- */
 function submitCustom(event) {
   event.preventDefault();
 
-  let info =
-    "Custom Request:\n\n" +
-    document.getElementById("custom-details").value +
-    "\n\nName: " + document.getElementById("custom-name").value +
-    "\nPhone: " + document.getElementById("custom-phone").value;
+  let templateParams = {
+    name: document.getElementById("custom-name").value,
+    phone: document.getElementById("custom-phone").value,
+    details: document.getElementById("custom-details").value
+  };
 
-  alert("CUSTOM REQUEST:\n\n" + info);
+  emailjs.send('service_q8j8kxf','template_ABC123XYZ', templateParams)
+    .then(function(response) {
+       alert('Custom request sent successfully!');
+       document.getElementById("custom-details").value = "";
+       document.getElementById("custom-name").value = "";
+       document.getElementById("custom-phone").value = "";
+    }, function(error) {
+       alert('Failed to send request, please try manually.');
+    });
 }
 </script>
 
