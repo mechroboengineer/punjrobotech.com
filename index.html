@@ -2,160 +2,215 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Electronics Projects</title>
+<title>Custom Microcontroller Projects</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-    /* GLOBAL FONT */
-    * {
-        font-family: "Times New Roman", serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    /* DARK DYNAMIC BACKGROUND */
-    body {
-        background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #2c2c54);
-        background-size: 300% 300%;
-        animation: darkMove 18s ease infinite;
-        color: white;
-    }
-
-    @keyframes darkMove {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* GLASS CONTAINER */
-    .container {
-        max-width: 900px;
-        margin: 40px auto;
-        background: rgba(255, 255, 255, 0.06);
-        padding: 25px;
-        border-radius: 12px;
-        backdrop-filter: blur(12px);
-        box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
-
-    h1, h2 {
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    h2 {
-        border-bottom: 2px solid rgba(255,255,255,0.2);
-        padding-bottom: 5px;
-        margin-top: 30px;
-    }
-
-    ul {
-        margin: 15px 0;
-        padding-left: 20px;
-    }
-
-    /* FORM */
-    form input, form textarea, form select {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        background: rgba(255,255,255,0.2);
-        color: white;
-    }
-
-    form button {
-        background: #444;
-        padding: 12px 20px;
-        border: none;
-        width: 100%;
-        font-size: 18px;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 15px;
-        color: white;
-    }
-
-    form button:hover {
-        background: #666;
-    }
-
+  body {
+    font-family: "Times New Roman", serif;
+    background: #0d0d0d;
+    color: #e5e5e5;
+  }
+  .card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+  }
+  .card:hover {
+    background: #222;
+  }
+  /* Forms dark theme */
+  .modal-form {
+    background: #1a1a1a;
+    color: #e5e5e5;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  .modal-form input,
+  .modal-form textarea {
+    background: #222;
+    color: #e5e5e5;
+    border: 1px solid #555;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .modal-form button {
+    background: #4ade80;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
 </style>
 </head>
+<body class="p-4">
 
-<body>
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center bg-black p-4 rounded-xl shadow-lg mb-6">
+  <h1 class="text-xl font-bold">Microcontroller Projects</h1>
+  <button onclick="openCart()" class="px-4 py-2 bg-blue-600 text-white rounded-lg">
+    🛒 Cart (<span id="cart-count">0</span>)
+  </button>
+</nav>
 
-<div class="container">
+<!-- PROJECT LIST -->
+<section id="projects" class="space-y-8">
 
-    <h1>Custom Electronics & Microcontroller Projects</h1>
-    <p style="text-align:center; margin-bottom:20px;">
-        Arduino • ESP32/ESP8266 • AT89C51/52 • Sensors • Automation • Robotics  
-        <br>Custom Project Starting Price: <b>₹600</b>
-    </p>
-
-    <!-- PROJECT LIST -->
-    <h2>Available Project Ideas</h2>
-
-    <h3>🔵 Arduino Projects</h3>
-    <ul>
-        <li>Home Automation System</li>
-        <li>Smart Dustbin</li>
-        <li>RFID Door Lock</li>
-        <li>Weather Station</li>
-        <li>Digital Thermometer</li>
+  <!-- Arduino -->
+  <div class="card p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-blue-400 mb-4">Arduino Projects</h2>
+    <ul class="space-y-3">
+      <li>Home Automation
+        <button onclick="addToCart('Arduino - Home Automation')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
+      <li>Smart Irrigation System
+        <button onclick="addToCart('Arduino - Smart Irrigation')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
+      <li>RFID Attendance
+        <button onclick="addToCart('Arduino - RFID Attendance')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
     </ul>
+  </div>
 
-    <h3>🟢 ESP32 / ESP8266 (IoT)</h3>
-    <ul>
-        <li>WiFi Home Automation</li>
-        <li>IoT Temperature Monitor (Firebase)</li>
-        <li>IoT Motion Alert</li>
-        <li>ESP32 Camera System</li>
+  <!-- ESP -->
+  <div class="card p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-green-400 mb-4">ESP32 / ESP8266 Projects</h2>
+    <ul class="space-y-3">
+      <li>IoT Automation (Blynk)
+        <button onclick="addToCart('ESP - IoT Automation')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
+      <li>Smart Door Lock
+        <button onclick="addToCart('ESP - Smart Door Lock')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
+      <li>ESP32 Camera
+        <button onclick="addToCart('ESP - Camera')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
     </ul>
+  </div>
 
-    <h3>🟣 AT89C51 / 52</h3>
-    <ul>
-        <li>Traffic Light Controller</li>
-        <li>Mini EVM</li>
-        <li>LCD Timer</li>
-        <li>Motor Speed Controller</li>
+  <!-- AT89C51 / AT89C52 -->
+  <div class="card p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-red-400 mb-4">AT89C51 / AT89C52 Projects</h2>
+    <ul class="space-y-3">
+      <li>Digital Code Lock
+        <button onclick="addToCart('AT89C51 - Digital Lock')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
+      <li>Traffic Light Controller
+        <button onclick="addToCart('AT89C51 - Traffic Controller')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
+      <li>Temp Controlled Fan
+        <button onclick="addToCart('AT89C51 - Temp Fan')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
+      </li>
     </ul>
+  </div>
 
-    <p><b>Note:</b> You can request any custom project not listed above.</p>
+  <!-- Custom Project -->
+  <div class="card p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-yellow-400 mb-4">Custom Project Request</h2>
+    <p class="mb-3">Describe your custom project requirement (Arduino, ESP, AT89C51, etc.)</p>
+    <button onclick="openCustomForm()" class="px-4 py-2 bg-yellow-600 text-white rounded-lg">
+      Request Custom Project
+    </button>
 
-    <!-- CUSTOM REQUEST FORM -->
-    <h2>Custom Project Request Form</h2>
+    <!-- Custom Form (hidden by default) -->
+    <div id="customProjectForm" class="mt-4 hidden modal-form">
+      <textarea id="customProjectText" rows="4" placeholder="Describe your project requirements here..."></textarea>
+      <button onclick="addCustomToCart()">Add Custom Project to Cart</button>
+    </div>
+  </div>
 
-    <form>
-        <label>Your Name</label>
-        <input type="text" placeholder="Enter your name" required>
+</section>
 
-        <label>Email</label>
-        <input type="email" placeholder="Enter your email" required>
+<p class="text-center text-gray-300 mt-6">💡 Custom Projects Also Available (Starting from ₹600)</p>
 
-        <label>Phone Number</label>
-        <input type="text" placeholder="Enter phone number" required>
-
-        <label>Select Controller</label>
-        <select required>
-            <option value="">Choose one</option>
-            <option>Arduino</option>
-            <option>ESP8266</option>
-            <option>ESP32</option>
-            <option>AT89C51</option>
-            <option>AT89C52</option>
-        </select>
-
-        <label>Project Details</label>
-        <textarea rows="5" placeholder="Describe your custom project..." required></textarea>
-
-        <button type="submit">Submit Request</button>
-    </form>
-
+<!-- CART MODAL -->
+<div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex justify-center items-center p-4">
+  <div class="modal-form max-w-md w-full">
+    <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+    <ul id="cart-items" class="list-disc ml-4 mb-4"></ul>
+    <div class="flex justify-between">
+      <button onclick="closeCart()" class="px-4 py-2 bg-gray-700 text-white rounded-lg">Close</button>
+      <button onclick="goToContactForm()" class="px-4 py-2 bg-blue-700 text-white rounded-lg">Next →</button>
+    </div>
+  </div>
 </div>
+
+<!-- CONTACT FORM MODAL -->
+<div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex justify-center items-center p-4">
+  <div class="modal-form max-w-md w-full">
+    <h2 class="text-xl font-bold mb-4">Enter Your Details</h2>
+    <form id="orderForm" class="modal-form">
+      <input id="name" type="text" placeholder="Your Name" required>
+      <input id="phone" type="text" placeholder="Phone Number" required>
+      <input id="email" type="email" placeholder="Email (optional)">
+      <button type="submit">Submit Order</button>
+    </form>
+    <button onclick="closeContactForm()" class="w-full py-2 bg-gray-700 text-white rounded-lg mt-3">Cancel</button>
+  </div>
+</div>
+
+<!-- EMAILJS + SCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+
+let cart = [];
+
+// Add predefined project to cart
+function addToCart(name){
+  cart.push({name:name});
+  updateCartCount();
+  alert(name+" added to cart!");
+}
+
+// Cart modal
+function openCart(){
+  document.getElementById("cart-modal").classList.remove("hidden");
+  renderCartItems();
+}
+function closeCart(){ document.getElementById("cart-modal").classList.add("hidden"); }
+function goToContactForm(){ closeCart(); document.getElementById("contact-modal").classList.remove("hidden"); }
+function closeContactForm(){ document.getElementById("contact-modal").classList.add("hidden"); }
+function updateCartCount(){ document.getElementById("cart-count").innerText = cart.length; }
+function renderCartItems(){
+  let html="";
+  cart.forEach(i=>{
+    html+="<li>"+i.name+(i.details?": "+i.details:"")+"</li>";
+  });
+  document.getElementById("cart-items").innerHTML=html;
+}
+
+// Submit order form
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const data={
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    projects: cart.map(i=>i.name+(i.details?": "+i.details:"")).join(", ")
+  };
+  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",data)
+    .then(()=>{ alert("Order Submitted!"); cart=[]; updateCartCount(); closeContactForm(); })
+    .catch(err=>{ alert("Error sending order."); console.error(err); });
+});
+
+// Custom Project Functions
+function openCustomForm(){ document.getElementById("customProjectForm").classList.remove("hidden"); window.scrollTo(0,document.body.scrollHeight);}
+function addCustomToCart(){
+  const desc=document.getElementById("customProjectText").value.trim();
+  if(desc===""){ alert("Please describe your custom project."); return; }
+  cart.push({name:"Custom Project",details:desc});
+  updateCartCount();
+  renderCartItems();
+  alert("Custom project added to cart!");
+  document.getElementById("customProjectText").value="";
+  document.getElementById("customProjectForm").classList.add("hidden");
+}
+</script>
 
 </body>
 </html>
