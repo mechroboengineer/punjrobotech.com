@@ -1,216 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Custom Microcontroller Projects</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-
-<style>
-  body {
-    font-family: "Times New Roman", serif;
-    background: #0d0d0d;
-    color: #e5e5e5;
-  }
-  .card {
-    background: #1a1a1a;
-    border: 1px solid #333;
-  }
-  .card:hover {
-    background: #222;
-  }
-  /* Forms dark theme */
-  .modal-form {
-    background: #1a1a1a;
-    color: #e5e5e5;
-    padding: 20px;
-    border-radius: 12px;
-  }
-  .modal-form input,
-  .modal-form textarea {
-    background: #222;
-    color: #e5e5e5;
-    border: 1px solid #555;
-    padding: 10px;
-    border-radius: 8px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .modal-form button {
-    background: #4ade80;
-    color: black;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin-top: 5px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PunjRoBoTech Projects</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: "Times New Roman", serif;
+    }
+  </style>
 </head>
-<body class="p-4">
 
-<!-- NAVBAR -->
-<nav class="flex justify-between items-center bg-black p-4 rounded-xl shadow-lg mb-6">
-  <h1 class="text-xl font-bold">Microcontroller Projects</h1>
-  <button onclick="openCart()" class="px-4 py-2 bg-blue-600 text-white rounded-lg">
-    🛒 Cart (<span id="cart-count">0</span>)
-  </button>
-</nav>
+<body class="bg-gray-900 text-white min-h-screen">
 
-<!-- PROJECT LIST -->
-<section id="projects" class="space-y-8">
-
-  <!-- Arduino -->
-  <div class="card p-6 rounded-2xl shadow-lg">
-    <h2 class="text-2xl font-bold text-blue-400 mb-4">Arduino Projects</h2>
-    <ul class="space-y-3">
-      <li>Home Automation
-        <button onclick="addToCart('Arduino - Home Automation')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-      <li>Smart Irrigation System
-        <button onclick="addToCart('Arduino - Smart Irrigation')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-      <li>RFID Attendance
-        <button onclick="addToCart('Arduino - RFID Attendance')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-    </ul>
-  </div>
-
-  <!-- ESP -->
-  <div class="card p-6 rounded-2xl shadow-lg">
-    <h2 class="text-2xl font-bold text-green-400 mb-4">ESP32 / ESP8266 Projects</h2>
-    <ul class="space-y-3">
-      <li>IoT Automation (Blynk)
-        <button onclick="addToCart('ESP - IoT Automation')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-      <li>Smart Door Lock
-        <button onclick="addToCart('ESP - Smart Door Lock')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-      <li>ESP32 Camera
-        <button onclick="addToCart('ESP - Camera')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-    </ul>
-  </div>
-
-  <!-- AT89C51 / AT89C52 -->
-  <div class="card p-6 rounded-2xl shadow-lg">
-    <h2 class="text-2xl font-bold text-red-400 mb-4">AT89C51 / AT89C52 Projects</h2>
-    <ul class="space-y-3">
-      <li>Digital Code Lock
-        <button onclick="addToCart('AT89C51 - Digital Lock')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-      <li>Traffic Light Controller
-        <button onclick="addToCart('AT89C51 - Traffic Controller')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-      <li>Temp Controlled Fan
-        <button onclick="addToCart('AT89C51 - Temp Fan')" class="ml-3 px-3 py-1 bg-green-700 text-white rounded">Add</button>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Custom Project -->
-  <div class="card p-6 rounded-2xl shadow-lg">
-    <h2 class="text-2xl font-bold text-yellow-400 mb-4">Custom Project Request</h2>
-    <p class="mb-3">Describe your custom project requirement (Arduino, ESP, AT89C51, etc.)</p>
-    <button onclick="openCustomForm()" class="px-4 py-2 bg-yellow-600 text-white rounded-lg">
-      Request Custom Project
+  <!-- NAVBAR -->
+  <nav class="bg-gray-800 p-4 shadow-lg flex justify-between items-center">
+    <h1 class="text-2xl font-bold">PunjRoBoTech</h1>
+    <button onclick="toggleCart()" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700">
+      Cart (<span id="cart-count">0</span>)
     </button>
+  </nav>
 
-    <!-- Custom Form (hidden by default) -->
-    <div id="customProjectForm" class="mt-4 hidden modal-form">
-      <textarea id="customProjectText" rows="4" placeholder="Describe your project requirements here..."></textarea>
-      <button onclick="addCustomToCart()">Add Custom Project to Cart</button>
+  <!-- MAIN CONTENT -->
+  <div class="p-6 space-y-8 max-w-3xl mx-auto">
+
+    <!-- Predefined Projects Section -->
+    <h2 class="text-3xl font-bold text-center mb-4">Predefined Projects</h2>
+
+    <div id="project-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+
+    <!-- Custom Project Button -->
+    <div class="text-center mt-6">
+      <button onclick="openCustomForm()" class="bg-yellow-600 px-6 py-3 rounded-lg text-lg hover:bg-yellow-700">
+        Submit Custom Project Idea
+      </button>
+    </div>
+
+  </div>
+
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4">
+    <div class="bg-gray-800 p-6 rounded-lg w-full max-w-md">
+      <h3 class="text-xl font-bold mb-4">Your Cart</h3>
+      <ul id="cart-items" class="mb-4 text-gray-300"></ul>
+
+      <button onclick="goToContact()" class="w-full bg-green-600 p-3 rounded-lg hover:bg-green-700 mb-2">
+        Next (Contact Form)
+      </button>
+      <button onclick="toggleCart()" class="w-full bg-red-600 p-3 rounded-lg hover:bg-red-700">
+        Close
+      </button>
     </div>
   </div>
 
-</section>
+  <!-- CONTACT FORM -->
+  <div id="contact-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4">
+    <form id="contact-form" class="bg-gray-800 p-6 rounded-lg w-full max-w-md space-y-4">
+      <h3 class="text-xl font-bold">Enter Your Details</h3>
 
-<p class="text-center text-gray-300 mt-6">💡 Custom Projects Also Available (Starting from ₹600)</p>
+      <input type="text" id="name" placeholder="Your Name" class="w-full p-3 rounded bg-gray-700 text-white" required>
+      <input type="text" id="phone" placeholder="Phone Number" class="w-full p-3 rounded bg-gray-700 text-white" required>
+      <textarea id="address" placeholder="Address" class="w-full p-3 rounded bg-gray-700 text-white" required></textarea>
 
-<!-- CART MODAL -->
-<div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex justify-center items-center p-4">
-  <div class="modal-form max-w-md w-full">
-    <h2 class="text-xl font-bold mb-4">Your Cart</h2>
-    <ul id="cart-items" class="list-disc ml-4 mb-4"></ul>
-    <div class="flex justify-between">
-      <button onclick="closeCart()" class="px-4 py-2 bg-gray-700 text-white rounded-lg">Close</button>
-      <button onclick="goToContactForm()" class="px-4 py-2 bg-blue-700 text-white rounded-lg">Next →</button>
-    </div>
-  </div>
-</div>
+      <button type="submit" class="w-full bg-blue-600 p-3 rounded-lg hover:bg-blue-700">
+        Submit Order
+      </button>
 
-<!-- CONTACT FORM MODAL -->
-<div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden flex justify-center items-center p-4">
-  <div class="modal-form max-w-md w-full">
-    <h2 class="text-xl font-bold mb-4">Enter Your Details</h2>
-    <form id="orderForm" class="modal-form">
-      <input id="name" type="text" placeholder="Your Name" required>
-      <input id="phone" type="text" placeholder="Phone Number" required>
-      <input id="email" type="email" placeholder="Email (optional)">
-      <button type="submit">Submit Order</button>
+      <button type="button" onclick="closeContact()" class="w-full bg-red-600 p-3 rounded-lg hover:bg-red-700">
+        Cancel
+      </button>
     </form>
-    <button onclick="closeContactForm()" class="w-full py-2 bg-gray-700 text-white rounded-lg mt-3">Cancel</button>
   </div>
-</div>
 
-<!-- EMAILJS + SCRIPT -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-<script>
-emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+  <!-- CUSTOM PROJECT FORM -->
+  <div id="custom-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4">
+    <form id="custom-form" class="bg-gray-800 p-6 rounded-lg w-full max-w-md space-y-4">
+      <h3 class="text-xl font-bold">Custom Project Request</h3>
 
-let cart = [];
+      <textarea id="custom-details" placeholder="Describe your custom project..."
+        class="w-full p-3 rounded bg-gray-700 text-white" required></textarea>
 
-// Add predefined project to cart
-function addToCart(name){
-  cart.push({name:name});
-  updateCartCount();
-  alert(name+" added to cart!");
-}
+      <input type="text" id="custom-name" placeholder="Your Name" class="w-full p-3 rounded bg-gray-700 text-white" required>
+      <input type="text" id="custom-phone" placeholder="Phone Number" class="w-full p-3 rounded bg-gray-700 text-white" required>
 
-// Cart modal
-function openCart(){
-  document.getElementById("cart-modal").classList.remove("hidden");
-  renderCartItems();
-}
-function closeCart(){ document.getElementById("cart-modal").classList.add("hidden"); }
-function goToContactForm(){ closeCart(); document.getElementById("contact-modal").classList.remove("hidden"); }
-function closeContactForm(){ document.getElementById("contact-modal").classList.add("hidden"); }
-function updateCartCount(){ document.getElementById("cart-count").innerText = cart.length; }
-function renderCartItems(){
-  let html="";
-  cart.forEach(i=>{
-    html+="<li>"+i.name+(i.details?": "+i.details:"")+"</li>";
-  });
-  document.getElementById("cart-items").innerHTML=html;
-}
+      <button type="submit" class="w-full bg-yellow-600 p-3 rounded-lg hover:bg-yellow-700">
+        Submit Custom Request
+      </button>
 
-// Submit order form
-document.getElementById("orderForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const data={
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    projects: cart.map(i=>i.name+(i.details?": "+i.details:"")).join(", ")
-  };
-  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",data)
-    .then(()=>{ alert("Order Submitted!"); cart=[]; updateCartCount(); closeContactForm(); })
-    .catch(err=>{ alert("Error sending order."); console.error(err); });
-});
+      <button type="button" onclick="closeCustomForm()" class="w-full bg-red-600 p-3 rounded-lg hover:bg-red-700">
+        Cancel
+      </button>
+    </form>
+  </div>
 
-// Custom Project Functions
-function openCustomForm(){ document.getElementById("customProjectForm").classList.remove("hidden"); window.scrollTo(0,document.body.scrollHeight);}
-function addCustomToCart(){
-  const desc=document.getElementById("customProjectText").value.trim();
-  if(desc===""){ alert("Please describe your custom project."); return; }
-  cart.push({name:"Custom Project",details:desc});
-  updateCartCount();
-  renderCartItems();
-  alert("Custom project added to cart!");
-  document.getElementById("customProjectText").value="";
-  document.getElementById("customProjectForm").classList.add("hidden");
-}
-</script>
+  <!-- FOOTER -->
+  <footer class="text-center py-6 mt-10 text-gray-400">
+    © 2025 punjrobotech.com — All rights reserved.
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const predefinedProjects = [
+      "Home Automation System",
+      "Smart Irrigation System",
+      "Temperature Monitoring with LCD",
+      "ESP32 WiFi Controlled Car",
+      "Arduino Line Follower Robot",
+      "AT89C51 LED Pattern Controller"
+    ];
+
+    const cart = [];
+
+    function renderProjects() {
+      const container = document.getElementById("project-list");
+      predefinedProjects.forEach(p => {
+        container.innerHTML += `
+          <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+            <h4 class="text-lg font-bold mb-2">${p}</h4>
+            <button onclick="addToCart('${p}')" class="bg-green-600 px-3 py-2 rounded hover:bg-green-700">
+              Add to Cart
+            </button>
+          </div>
+        `;
+      });
+    }
+    renderProjects();
+
+    function addToCart(item) {
+      cart.push(item);
+      document.getElementById("cart-count").innerText = cart.length;
+    }
+
+    function toggleCart() {
+      document.getElementById("cart-modal").classList.toggle("hidden");
+      loadCart();
+    }
+
+    function loadCart() {
+      const list = document.getElementById("cart-items");
+      list.innerHTML = "";
+      cart.forEach(c => {
+        list.innerHTML += `<li class="p-2 bg-gray-700 rounded mb-2">${c}</li>`;
+      });
+    }
+
+    function goToContact() {
+      document.getElementById("cart-modal").classList.add("hidden");
+      document.getElementById("contact-modal").classList.remove("hidden");
+    }
+
+    function closeContact() {
+      document.getElementById("contact-modal").classList.add("hidden");
+    }
+
+    function openCustomForm() {
+      document.getElementById("custom-modal").classList.remove("hidden");
+    }
+
+    function closeCustomForm() {
+      document.getElementById("custom-modal").classList.add("hidden");
+    }
+  </script>
 
 </body>
 </html>
