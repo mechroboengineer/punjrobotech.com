@@ -11,6 +11,33 @@
 </head>
 <body class="bg-gray-900 text-white">
 
+<!-- ===================== POLICIES POPUP ===================== -->
+<div id="policies-popup" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 hidden">
+  <div class="bg-gray-800 p-6 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto text-gray-300">
+    <h2 class="text-3xl font-bold mb-4 text-white">Website Policies</h2>
+
+    <h3 class="text-xl font-semibold mt-4">Privacy Policy</h3>
+    <p>We collect customer information to process orders securely. Your data is never shared with third parties.</p>
+
+    <h3 class="text-xl font-semibold mt-4">Refund & Cancellation Policy</h3>
+    <p>
+      Projects can be cancelled within <strong>24 hours</strong> of order confirmation;50% of Credited payment will be Refund within 7 days.<br>
+      <strong>Orders cancelled after 24 hours are non-refundable, and the product will not be delivered.</strong><br>
+      <strong>50% advance payment is mandatory</strong> for all orders. No cash-on-delivery or full payment later is allowed.<br>
+      Refunds (where applicable) are processed within 7 working days.<br>
+      No refund is available for custom projects once work has commenced.
+    </p>
+
+    <h3 class="text-xl font-semibold mt-4">Delivery Policy</h3>
+    <p>Physical projects are delivered within 3–7 working days. Customer is responsible for providing correct shipping details.</p>
+
+    <h3 class="text-xl font-semibold mt-4">Terms & Conditions</h3>
+    <p>By using this website and placing an order, you agree to our terms and conditions.</p>
+
+    <button onclick="acceptPolicies()" class="mt-6 bg-green-600 px-6 py-3 rounded-lg hover:bg-green-700 w-full">Accept & Continue</button>
+  </div>
+</div>
+
 <!-- ===================== HOME SECTION ===================== -->
 <section id="home" class="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
   <h1 class="text-4xl font-bold">PunjRoBoTech</h1>
@@ -76,11 +103,16 @@
   <p>We collect customer information to process orders securely. Your data is never shared with third parties.</p>
 
   <h3 class="text-xl font-semibold mt-4">Refund & Cancellation Policy</h3>
-  <p>Projects can be cancelled within 24 hours of order confirmation . Refunds are processed within 7 working days. Orders cancelled after 24 hours are non-refundable, and the product will not be delivered, as the order is considered a cancelled product.
+  <p>
+    Projects can be cancelled within <strong>24 hours</strong> of order confirmation; 50% of Credited payment will be Refund within 7 days.<br>
+    <strong>Orders cancelled after 24 hours are non-refundable, and the product will not be delivered.</strong><br>
+    <strong>50% advance payment is mandatory</strong> for all orders. No cash-on-delivery or full payment later is allowed.<br>
+    Refunds (where applicable) are processed within <strong>7 working days</strong>.<br>
+    No refund is available for <strong>custom projects</strong> once work has commenced.
   </p>
 
   <h3 class="text-xl font-semibold mt-4">Delivery Policy</h3>
-  <p>Physical projects are delivered within 5–7 working days. Customer is responsible for providing correct shipping details.</p>
+  <p>Physical projects are delivered within 3–7 working days. Customer is responsible for providing correct shipping details.</p>
 
   <h3 class="text-xl font-semibold mt-4">Terms & Conditions</h3>
   <p>By using this website and placing an order, you agree to our terms and conditions.</p>
@@ -103,7 +135,7 @@
       <input id="cart-phone" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Phone Number" required>
       <input id="cart-address" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Address" required>
       <button type="button" onclick="sendWhatsAppOrder()" class="w-full bg-green-600 p-3 rounded-lg hover:bg-green-700">
-        Pay Online / Send Order
+        Pay 50% Advance
       </button>
     </form>
 
@@ -124,6 +156,16 @@
 
 <!-- ===================== JAVASCRIPT ===================== -->
 <script>
+/* ------------------- Policies Popup ------------------- */
+window.onload = function() {
+  document.getElementById("policies-popup").classList.remove("hidden");
+};
+
+function acceptPolicies() {
+  document.getElementById("policies-popup").classList.add("hidden");
+}
+
+/* ------------------- Section Navigation ------------------- */
 function showSection(id) {
   document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
@@ -131,15 +173,15 @@ function showSection(id) {
 
 /* ------------------- Projects With Prices ------------------- */
 const predefinedProjects = [
-  { name: "Ultrasonic Obstacle Avoiding Smart Car", price: 5000 },
-  { name: "Smart Irrigation System", price: 999 },
+  { name: "Ultrasonic Obstacle Avoiding Car", price: 4999 },
+  { name: "Smart Irrigation System", price: 799 },
   { name: "Temperature Monitoring System", price: 899 },
-  { name: "ESP32 Bluetooth Car", price: 1999 },
-  { name: "Arduino Line Follower Robot", price: 2500 },
-  { name: "Useless Box", price: 550 },
-  { name: "Birthday Wishing Box", price: 600 },
-  { name: "Smoke Detecting Alarm", price: 700 },
-  { name: "Room Decoration Light Glowing Box", price: 800}
+  { name: "ESP32 Bluetooth Car", price: 2999 },
+  { name: "Arduino Line Follower Robot", price: 1499 },
+  { name: "Useless Box", price: 600 },
+  { name: "Birthday Wishing Box", price: 500 },
+  { name: "Smoke Detecting Alarm", price: 750 },
+  { name: "Room Decoration Light Glowing Box", price: 600}
 ];
 
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -190,7 +232,6 @@ function loadCart() {
   }
 
   let total = 0;
-
   cart.forEach((item, index) => {
     total += item.price;
     list.innerHTML += `
@@ -213,7 +254,7 @@ function removeFromCart(index) {
   loadCart();
 }
 
-/* ------------------- Razorpay Payment + WhatsApp ------------------- */
+/* ------------------- Razorpay 50% Advance Payment ------------------- */
 function sendWhatsAppOrder() {
   if (cart.length === 0) {
     alert("Cart is empty!");
@@ -231,19 +272,21 @@ function sendWhatsAppOrder() {
 
   let list = "";
   let total = 0;
-
   cart.forEach(i => {
     list += `${i.name} - ₹${i.price}\n`;
     total += i.price;
   });
 
+  const advance = Math.ceil(total / 2); // 50% advance
+  const remaining = total - advance;
+
   // Razorpay options
   var options = {
-    "key": "YOUR_RAZORPAY_KEY_ID", // Replace with your Razorpay Key ID
-    "amount": total * 100,
+    "key": "YOUR_RAZORPAY_KEY_ID", // replace with your key
+    "amount": advance * 100,
     "currency": "INR",
     "name": "PunjRoBoTech",
-    "description": "Project Purchase",
+    "description": "50% Advance Payment",
     "theme": { "color": "#1E90FF" },
     "handler": function (response) {
       const paymentID = response.razorpay_payment_id;
@@ -251,8 +294,10 @@ function sendWhatsAppOrder() {
       const message =
         `🎉 New Order Received!\n
 Projects:\n${list}
-Total: ₹${total}\n\n
-Customer Details:\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\n
+Total: ₹${total}
+Advance Paid (50%): ₹${advance}
+Remaining Balance: ₹${remaining}\n
+Customer Details:\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n
 Payment ID: ${paymentID}`;
 
       const url = "https://wa.me/917526960761?text=" + encodeURIComponent(message);
