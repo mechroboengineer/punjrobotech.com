@@ -70,6 +70,8 @@
     <h3 class="text-xl font-bold mb-4">Your Cart</h3>
     <ul id="cart-items" class="mb-4 text-gray-300"></ul>
 
+    <p id="cart-total" class="text-lg font-bold text-green-400 mb-4"></p>
+
     <form id="cart-contact-form" class="space-y-3">
       <input id="cart-name" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Your Name" required>
       <input id="cart-phone" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Phone Number" required>
@@ -97,17 +99,17 @@ function showSection(id) {
   document.getElementById(id).classList.remove("hidden");
 }
 
-/* ------------------- Projects ------------------- */
+/* ------------------- Projects With Prices ------------------- */
 const predefinedProjects = [
-  "Ultrasonic Obstacle Avoiding Car",
-  "Smart Irrigation System",
-  "Temperature Monitoring System",
-  "ESP32 Bluetooth Car",
-  "Arduino Line Follower Robot",
-  "Useless Box",
-  "Birthday Wishing Box",
-  "Smoke Detecting Alarm",
-  "Room Decoration Light Glowing Box"
+  { name: "Ultrasonic Obstacle Avoiding Car", price: 899 },
+  { name: "Smart Irrigation System", price: 799 },
+  { name: "Temperature Monitoring System", price: 699 },
+  { name: "ESP32 Bluetooth Car", price: 999 },
+  { name: "Arduino Line Follower Robot", price: 999 },
+  { name: "Useless Box", price: 499 },
+  { name: "Birthday Wishing Box", price: 399 },
+  { name: "Smoke Detecting Alarm", price: 349 },
+  { name: "Room Decoration Light Glowing Box", price: 299 }
 ];
 
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -119,8 +121,9 @@ function renderProjects() {
   predefinedProjects.forEach(p => {
     container.innerHTML += `
       <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
-        <h4 class="text-lg font-bold mb-2">${p}</h4>
-        <button onclick="addToCart('${p}')" class="bg-green-600 px-3 py-2 rounded hover:bg-green-700">
+        <h4 class="text-lg font-bold mb-1">${p.name}</h4>
+        <p class="text-yellow-400 font-bold mb-2">₹${p.price}</p>
+        <button onclick="addToCart('${p.name}', ${p.price})" class="bg-green-600 px-3 py-2 rounded hover:bg-green-700">
           Add to Cart
         </button>
       </div>
@@ -129,8 +132,8 @@ function renderProjects() {
 }
 renderProjects();
 
-function addToCart(item) {
-  cart.push(item);
+function addToCart(name, price) {
+  cart.push({ name, price });
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
   alert("Added to cart!");
@@ -152,19 +155,25 @@ function loadCart() {
 
   if (cart.length === 0) {
     list.innerHTML = "<p class='text-gray-400'>Cart is empty</p>";
+    document.getElementById("cart-total").innerText = "";
     return;
   }
 
+  let total = 0;
+
   cart.forEach((item, index) => {
+    total += item.price;
     list.innerHTML += `
       <li class="p-2 bg-gray-700 rounded mb-2 flex justify-between items-center">
-        ${item}
+        ${item.name} - <span class="text-yellow-400 font-bold">₹${item.price}</span>
         <button onclick="removeFromCart(${index})" class="bg-red-600 px-3 py-1 rounded hover:bg-red-700 text-sm">
           Remove
         </button>
       </li>
     `;
   });
+
+  document.getElementById("cart-total").innerText = "Total: ₹" + total;
 }
 
 function removeFromCart(index) {
@@ -190,7 +199,17 @@ function sendWhatsAppOrder() {
     return;
   }
 
-  const message = `Hello! I want to order the following projects:\n\nProjects: ${cart.join(", ")}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+  let list = "";
+  let total = 0;
+
+  cart.forEach(i => {
+    list += `${i.name} - ₹${i.price}\n`;
+    total += i.price;
+  });
+
+  const message =
+    `Hello! I want to order the following projects:\n\n${list}\nTotal: ₹${total}\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+
   const url = "https://wa.me/917526960761?text=" + encodeURIComponent(message);
   window.open(url, "_blank");
 
@@ -207,11 +226,6 @@ function submitCustom(event) {
   const phone = document.getElementById("custom-phone").value;
   const address = document.getElementById("custom-address").value;
   const details = document.getElementById("custom-details").value;
-
-  if(!name || !phone || !address || !details){
-    alert("All fields are required!");
-    return;
-  }
 
   const message = `Hello! I have a custom project request:\n\nDetails: ${details}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
   const url = "https://wa.me/917526960761?text=" + encodeURIComponent(message);
