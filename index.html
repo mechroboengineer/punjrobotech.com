@@ -1,318 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PunjRoBoTech Projects</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  body { font-family: "Times New Roman", serif; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ⭐ SEO OPTIMIZED TITLE -->
+    <title>PunJRoBoTech – Robotics & IoT Projects | Custom Electronics</title>
+
+    <!-- ⭐ SEO META DESCRIPTION -->
+    <meta name="description"
+        content="PunJRoBoTech provides Arduino, ESP32, IoT, and electronics projects. Predefined and custom project development with India-wide delivery. Order via WhatsApp.">
+
+    <!-- ⭐ SEO KEYWORDS -->
+    <meta name="keywords"
+        content="PunjRoBoTech, robotics projects, IoT projects, Arduino projects, ESP32 projects, engineering projects, custom electronics, BTech projects, science fair projects">
+
+    <!-- ⭐ OPEN GRAPH (For Google & Social SEO) -->
+    <meta property="og:title" content="PunJRoBoTech – Robotics & IoT Projects">
+    <meta property="og:description"
+        content="Predefined & custom robotics, Arduino, and IoT projects with India-wide delivery. Order via WhatsApp.">
+    <meta property="og:type" content="website">
+
+    <!-- ⭐ SCHEMA (GOOGLE RANK BOOST) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PunJRoBoTech",
+        "url": "https://punjrobotech.com",
+        "description": "Robotics, IoT, Arduino and custom electronics project development.",
+        "contactPoint": [{
+            "@type": "ContactPoint",
+            "telephone": "+917526960761",
+            "contactType": "customer service"
+        }]
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+        }
+    </style>
 </head>
+
 <body class="bg-gray-900 text-white">
 
-<!-- ===================== POLICIES POPUP ===================== -->
-<div id="policies-popup" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 hidden">
-  <div class="bg-gray-800 p-6 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto text-gray-300">
-    <h2 class="text-3xl font-bold mb-4 text-white">Website Policies</h2>
+    <!-- ===================== H1 FOR SEO ===================== -->
+    <h1 class="text-center text-2xl font-bold mt-4 text-yellow-400">
+        PunJRoBoTech – Robotics, IoT & Custom Electronics Projects
+    </h1>
 
-    <h3 class="text-xl font-semibold mt-4">Privacy Policy</h3>
-    <p>We collect customer information to process orders securely. Your data is never shared with third parties.</p>
+    <!-- ===================== POPUP ===================== -->
+    <div id="policies-popup"
+        class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 hidden">
+        <div class="bg-gray-800 p-6 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto text-gray-300">
+            <h2 class="text-3xl font-bold mb-4 text-white">Website Policies</h2>
 
-    <h3 class="text-xl font-semibold mt-4">Refund & Cancellation Policy</h3>
-    <p>
-      Projects can be cancelled within <strong>24 hours</strong> of order confirmation; 50% of Credited payment will be Refund within 7 days.<br>
-      <strong>Orders cancelled after 24 hours are non-refundable, and the product will not be delivered.</strong><br>
-      <strong>50% advance payment is mandatory</strong> for all orders. No cash-on-delivery or full payment later is allowed.<br>
-      Refunds (where applicable) are processed within 7 working days.<br>
-      No refund is available for custom projects once work has commenced.
-    </p>
+            <h3 class="text-xl font-semibold mt-4">Privacy Policy</h3>
+            <p>Your information is only used to process orders. Never shared with anyone.</p>
 
-    <h3 class="text-xl font-semibold mt-4">Delivery Policy</h3>
-    <p>Physical projects are delivered within 3–7 working days. Customer is responsible for providing correct shipping details.</p>
+            <h3 class="text-xl font-semibold mt-4">Refund & Cancellation Policy</h3>
+            <p>
+                Projects can be cancelled within <strong>24 hours</strong> for a 50% refund of deposited amount will provide within 7 days.<br>
+                After 24 hours, no refund is provided.<br>
+                <strong>50% advance payment is mandatory</strong> for all orders.<br>
+                No cash-on-delivery available.<br>
+                No refund for custom projects after work starts.
+            </p>
 
-    <h3 class="text-xl font-semibold mt-4">Terms & Conditions</h3>
-    <p>By using this website and placing an order, you agree to our terms and conditions.</p>
+            <h3 class="text-xl font-semibold mt-4">Delivery Policy</h3>
+            <p>Items are shipped in 3–7 working days. Customer must provide correct address.</p>
 
-    <button onclick="acceptPolicies()" class="mt-6 bg-green-600 px-6 py-3 rounded-lg hover:bg-green-700 w-full">Accept & Continue</button>
-  </div>
-</div>
+            <h3 class="text-xl font-semibold mt-4">Terms & Conditions</h3>
+            <p>Using this website means you accept all policies.</p>
 
-<!-- ===================== HOME SECTION ===================== -->
-<section id="home" class="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
-  <h1 class="text-4xl font-bold">PunjRoBoTech</h1>
-  <p class="text-center max-w-lg text-gray-300">
-    Arduino, ESP & AT89C51/52 Based Project Development & Custom Electronics Solutions.
-  </p>
+            <button onclick="acceptPolicies()"
+                class="mt-6 bg-green-600 px-6 py-3 rounded-lg hover:bg-green-700 w-full">Accept & Continue</button>
+        </div>
+    </div>
 
-  <div class="space-y-4 w-full max-w-xs">
-    <button onclick="showSection('projects')" class="bg-blue-600 w-full p-4 rounded-lg text-xl hover:bg-blue-700">
-      Predefined Projects
-    </button>
+    <!-- ===================== HOME ===================== -->
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
+        <h2 class="text-4xl font-bold">PunjRoBoTech</h2>
 
-    <button onclick="showSection('custom')" class="bg-yellow-600 w-full p-4 rounded-lg text-xl hover:bg-yellow-700">
-      Custom Project Request
-    </button>
+        <p class="text-center max-w-lg text-gray-300">
+            Arduino, ESP32, Sensors & Custom Electronics Project Development.
+        </p>
 
-    <button onclick="showSection('policies')" class="bg-gray-700 w-full p-4 rounded-lg text-lg hover:bg-gray-600">
-      Policies
-    </button>
-  </div>
-</section>
+        <div class="space-y-4 w-full max-w-xs">
+            <button onclick="showSection('projects')" class="bg-blue-600 w-full p-4 rounded-lg text-xl">Predefined
+                Projects</button>
+            <button onclick="showSection('custom')" class="bg-yellow-600 w-full p-4 rounded-lg text-xl">Custom Project
+                Request</button>
+            <button onclick="showSection('policies')" class="bg-gray-700 w-full p-4 rounded-lg text-lg">Policies</button>
+        </div>
+    </section>
 
-<!-- ===================== PROJECTS SECTION ===================== -->
-<section id="projects" class="hidden p-6 min-h-screen">
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-3xl font-bold">Predefined Projects</h2>
-    <button onclick="toggleCart()" class="bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700">
-      Cart (<span id="cart-count">0</span>)
-    </button>
-  </div>
+    <!-- ===================== PREDEFINED PROJECTS ===================== -->
+    <section id="projects" class="hidden p-6 min-h-screen">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold">Predefined Projects</h2>
+            <button onclick="toggleCart()" class="bg-green-600 px-4 py-2 rounded-lg">Cart (<span
+                    id="cart-count">0</span>)</button>
+        </div>
 
-  <div id="project-list" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
+        <div id="project-list" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
 
-  <button onclick="showSection('home')" class="mt-8 bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700">
-    Back to Home
-  </button>
-</section>
+        <button onclick="showSection('home')" class="mt-8 bg-red-600 px-6 py-3 rounded-lg">Back to Home</button>
+    </section>
 
-<!-- ===================== CUSTOM PROJECT SECTION ===================== -->
-<section id="custom" class="hidden p-6 min-h-screen max-w-xl mx-auto">
-  <h2 class="text-3xl font-bold text-center mb-6">Custom Project Request</h2>
+    <!-- ===================== CUSTOM PROJECT ===================== -->
+    <section id="custom" class="hidden p-6 min-h-screen max-w-xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-6">Custom Project Request</h2>
 
-  <form onsubmit="submitCustom(event)" class="space-y-4">
-    <textarea id="custom-details" class="w-full p-4 rounded bg-gray-800"
-      placeholder="Describe your custom project..." rows="5" required></textarea>
-    <input id="custom-name" class="w-full p-3 rounded bg-gray-800" placeholder="Your Name" required>
-    <input id="custom-phone" class="w-full p-3 rounded bg-gray-800" placeholder="Phone Number" required>
-    <input id="custom-address" class="w-full p-3 rounded bg-gray-800" placeholder="Address" required>
+        <form onsubmit="submitCustom(event)" class="space-y-4">
+            <textarea id="custom-details" class="w-full p-4 rounded bg-gray-800" placeholder="Describe your project..."
+                rows="5" required></textarea>
+            <input id="custom-name" class="w-full p-3 rounded bg-gray-800" placeholder="Your Name" required>
+            <input id="custom-phone" class="w-full p-3 rounded bg-gray-800" placeholder="Phone Number" required>
+            <input id="custom-address" class="w-full p-3 rounded bg-gray-800" placeholder="Address" required>
+            <button class="bg-yellow-600 hover:bg-yellow-700 w-full p-3 rounded">Send via WhatsApp</button>
+        </form>
 
-    <button class="bg-yellow-600 hover:bg-yellow-700 w-full p-3 rounded">Send Custom Request via WhatsApp</button>
-  </form>
+        <button onclick="showSection('home')" class="mt-6 bg-red-600 px-6 py-3 rounded-lg w-full">Back to Home</button>
+    </section>
 
-  <button onclick="showSection('home')" class="mt-6 bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 w-full">
-    Back to Home
-  </button>
-</section>
+    <!-- ===================== POLICIES PAGE ===================== -->
+    <section id="policies" class="hidden p-6 min-h-screen max-w-3xl mx-auto text-gray-300">
+        <h2 class="text-3xl font-bold mb-4 text-white">Policies</h2>
 
-<!-- ===================== POLICIES SECTION ===================== -->
-<section id="policies" class="hidden p-6 min-h-screen max-w-3xl mx-auto text-gray-300">
-  <h2 class="text-3xl font-bold mb-4 text-white">Policies</h2>
+        <h3 class="text-xl font-semibold mt-4">Privacy Policy</h3>
+        <p>Your data is never shared with third parties.</p>
 
-  <h3 class="text-xl font-semibold mt-4">Privacy Policy</h3>
-  <p>We collect customer information to process orders securely. Your data is never shared with third parties.</p>
+        <h3 class="text-xl font-semibold mt-4">Refund & Cancellation Policy</h3>
+        <p>
+            24-hour cancellation with 50% refund of deposited amount will provided within 7 working days.<br>
+            After 24 hours — no refund.<br>
+            50% advance is mandatory.<br>
+            No refund for custom projects once work starts.
+        </p>
 
-  <h3 class="text-xl font-semibold mt-4">Refund & Cancellation Policy</h3>
-  <p>
-    Projects can be cancelled within <strong>24 hours</strong> of order confirmation; 50% of Credited payment will be Refund within 7 days.<br>
-    <strong>Orders cancelled after 24 hours are non-refundable, and the product will not be delivered.</strong><br>
-    <strong>50% advance payment is mandatory</strong> for all orders. No cash-on-delivery or full payment later is allowed.<br>
-    Refunds (where applicable) are processed within <strong>7 working days</strong>.<br>
-    No refund is available for <strong>custom projects</strong> once work has commenced.
-  </p>
+        <h3 class="text-xl font-semibold mt-4">Delivery Policy</h3>
+        <p>Delivery in 3–7 working days.</p>
 
-  <h3 class="text-xl font-semibold mt-4">Delivery Policy</h3>
-  <p>Physical projects are delivered within 3–7 working days. Customer is responsible for providing correct shipping details.</p>
+        <button onclick="showSection('home')" class="mt-6 bg-red-600 px-6 py-3 rounded-lg w-full">Back to Home</button>
+    </section>
+        <!-- ===================== CART MODAL ===================== -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4">
+        <div class="bg-gray-800 p-6 rounded-lg w-full max-w-md">
+            <h3 class="text-xl font-bold mb-4">Your Cart</h3>
+            <ul id="cart-items" class="mb-4 text-gray-300"></ul>
+            <p id="cart-total" class="text-lg font-bold text-green-400 mb-4"></p>
 
-  <h3 class="text-xl font-semibold mt-4">Terms & Conditions</h3>
-  <p>By using this website and placing an order, you agree to our terms and conditions.</p>
+            <form id="cart-contact-form" class="space-y-3">
+                <input id="cart-name" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Your Name" required>
+                <input id="cart-phone" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Phone Number"
+                    required>
+                <input id="cart-address" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Address"
+                    required>
 
-  <button onclick="showSection('home')" class="mt-6 bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 w-full">
-    Back to Home
-  </button>
-</section>
+                <button type="button" onclick="sendWhatsAppOrder()"
+                    class="w-full bg-green-600 p-3 rounded-lg hover:bg-green-700">
+                    Send Order on WhatsApp (50% Advance)
+                </button>
+            </form>
 
-<!-- ===================== CART MODAL ===================== -->
-<div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4">
-  <div class="bg-gray-800 p-6 rounded-lg w-full max-w-md">
-    <h3 class="text-xl font-bold mb-4">Your Cart</h3>
-    <ul id="cart-items" class="mb-4 text-gray-300"></ul>
+            <button onclick="toggleCart()" class="w-full bg-red-600 p-3 rounded-lg hover:bg-red-700 mt-2">Close</button>
+        </div>
+    </div>
 
-    <p id="cart-total" class="text-lg font-bold text-green-400 mb-4"></p>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="text-center py-6 text-gray-400">
+        © 2025 punjrobotech.com — All rights reserved.
+        |
+        <a href="#" onclick="showSection('policies')" class="underline hover:text-white">Policies</a>
+    </footer>
 
-    <form id="cart-contact-form" class="space-y-3">
-      <input id="cart-name" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Your Name" required>
-      <input id="cart-phone" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Phone Number" required>
-      <input id="cart-address" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Address" required>
-      <button type="button" onclick="sendWhatsAppOrder()" class="w-full bg-green-600 p-3 rounded-lg hover:bg-green-700">
-        Pay 50% Advance via WhatsApp
-      </button>
-    </form>
+    <!-- ===================== JAVASCRIPT ===================== -->
+    <script>
+        /* ------------------- Policies Popup ------------------- */
+        window.onload = function () {
+            if (!localStorage.getItem("policyAccepted")) {
+                document.getElementById("policies-popup").classList.remove("hidden");
+            }
+        };
 
-    <button onclick="toggleCart()" class="w-full bg-red-600 p-3 rounded-lg hover:bg-red-700 mt-2">
-      Close
-    </button>
-  </div>
-</div>
+        function acceptPolicies() {
+            localStorage.setItem("policyAccepted", "yes");
+            document.getElementById("policies-popup").classList.add("hidden");
+        }
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="text-center py-6 text-gray-400">
-  © 2025 punjrobotech.com — All rights reserved. | 
-  <a href="#" onclick="showSection('policies')" class="underline hover:text-white">Policies</a>
-</footer>
+        /* ------------------- Section Navigation ------------------- */
+        function showSection(id) {
+            document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
+            document.getElementById(id).classList.remove("hidden");
+        }
 
-<!-- ===================== JAVASCRIPT ===================== -->
-<script>
-/* ------------------- Policies Popup ------------------- */
-window.onload = function() {
-  if(!localStorage.getItem("policyAccepted")){
-    document.getElementById("policies-popup").classList.remove("hidden");
-  }
-};
+        /* ------------------- Projects With Prices ------------------- */
+        const predefinedProjects = [
+            { name: "Ultrasonic Obstacle Avoiding Car", price: 4999 },
+            { name: "Smart Irrigation System", price: 799 },
+            { name: "Temperature Monitoring System", price: 899 },
+            { name: "ESP32 Bluetooth Car", price: 2999 },
+            { name: "Arduino Line Follower Robot", price: 1499 },
+            { name: "Useless Box", price: 600 },
+            { name: "Birthday Wishing Box", price: 500 },
+            { name: "Smoke Detecting Alarm", price: 750 },
+            { name: "Room Light Glowing Box", price: 600 }
+        ];
 
-function acceptPolicies() {
-  localStorage.setItem("policyAccepted", "yes");
-  document.getElementById("policies-popup").classList.add("hidden");
-}
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        updateCartCount();
 
-/* ------------------- Section Navigation ------------------- */
-function showSection(id) {
-  document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-}
+        function renderProjects() {
+            const container = document.getElementById("project-list");
+            container.innerHTML = "";
 
-/* ------------------- Projects With Prices ------------------- */
-const predefinedProjects = [
-  { name: "Ultrasonic Obstacle Avoiding Car", price: 4999 },
-  { name: "Smart Irrigation System", price: 799 },
-  { name: "Temperature Monitoring System", price: 899 },
-  { name: "ESP32 Bluetooth Car", price: 2999 },
-  { name: "Arduino Line Follower Robot", price: 1499 },
-  { name: "Useless Box", price: 600 },
-  { name: "Birthday Wishing Box", price: 500 },
-  { name: "Smoke Detecting Alarm", price: 750 },
-  { name: "Room Decoration Light Glowing Box", price: 600}
-];
+            predefinedProjects.forEach(p => {
+                container.innerHTML += `
+                <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+                    <h4 class="text-lg font-bold mb-1">${p.name}</h4>
+                    <p class="text-yellow-400 font-bold mb-2">₹${p.price}</p>
+                    <button onclick="addToCart('${p.name}', ${p.price})"
+                        class="bg-green-600 px-3 py-2 rounded hover:bg-green-700">
+                        Add to Cart
+                    </button>
+                </div>`;
+            });
+        }
 
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
-updateCartCount();
+        renderProjects();
 
-function renderProjects() {
-  const container = document.getElementById("project-list");
-  container.innerHTML = "";
-  predefinedProjects.forEach(p => {
-    container.innerHTML += `
-      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
-        <h4 class="text-lg font-bold mb-1">${p.name}</h4>
-        <p class="text-yellow-400 font-bold mb-2">₹${p.price}</p>
-        <button onclick="addToCart('${p.name}', ${p.price})" class="bg-green-600 px-3 py-2 rounded hover:bg-green-700">
-          Add to Cart
-        </button>
-      </div>
-    `;
-  });
-}
-renderProjects();
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert("Added to cart!");
+        }
 
-function addToCart(name, price) {
-  cart.push({ name, price });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
-  alert("Added to cart!");
-}
+        function updateCartCount() {
+            document.getElementById("cart-count").innerText = cart.length;
+        }
 
-function updateCartCount() {
-  document.getElementById("cart-count").innerText = cart.length;
-}
+        /* ------------------- Cart Modal ------------------- */
+        function toggleCart() {
+            document.getElementById("cart-modal").classList.toggle("hidden");
+            loadCart();
+        }
 
-/* ------------------- Cart Modal ------------------- */
-function toggleCart() {
-  document.getElementById("cart-modal").classList.toggle("hidden");
-  loadCart();
-}
+        function loadCart() {
+            const list = document.getElementById("cart-items");
+            list.innerHTML = "";
 
-function loadCart() {
-  const list = document.getElementById("cart-items");
-  list.innerHTML = "";
+            if (cart.length === 0) {
+                list.innerHTML = "<p class='text-gray-400'>Cart is empty</p>";
+                document.getElementById("cart-total").innerText = "";
+                return;
+            }
 
-  if (cart.length === 0) {
-    list.innerHTML = "<p class='text-gray-400'>Cart is empty</p>";
-    document.getElementById("cart-total").innerText = "";
-    return;
-  }
+            let total = 0;
 
-  let total = 0;
-  cart.forEach((item, index) => {
-    total += item.price;
-    list.innerHTML += `
-      <li class="p-2 bg-gray-700 rounded mb-2 flex justify-between items-center">
-        ${item.name} - <span class="text-yellow-400 font-bold">₹${item.price}</span>
-        <button onclick="removeFromCart(${index})" class="bg-red-600 px-3 py-1 rounded hover:bg-red-700 text-sm">
-          Remove
-        </button>
-      </li>
-    `;
-  });
+            cart.forEach((item, index) => {
+                total += item.price;
+                list.innerHTML += `
+                <li class="p-2 bg-gray-700 rounded mb-2 flex justify-between items-center">
+                    ${item.name}
+                    <span class="text-yellow-400 font-bold">₹${item.price}</span>
+                    <button onclick="removeFromCart(${index})"
+                        class="bg-red-600 px-3 py-1 rounded hover:bg-red-700 text-sm">Remove</button>
+                </li>`;
+            });
 
-  document.getElementById("cart-total").innerText = "Total: ₹" + total;
-}
+            document.getElementById("cart-total").innerText = "Total: ₹" + total;
+        }
 
-function removeFromCart(index) {
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
-  loadCart();
-}
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            loadCart();
+        }
 
-/* ------------------- WhatsApp Order ------------------- */
-function sendWhatsAppOrder() {
-  if (cart.length === 0) {
-    alert("Cart is empty!");
-    return;
-  }
+        /* ------------------- WhatsApp Checkout ------------------- */
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                alert("Cart is empty!");
+                return;
+            }
 
-  const name = document.getElementById("cart-name").value;
-  const phone = document.getElementById("cart-phone").value;
-  const address = document.getElementById("cart-address").value;
+            const name = document.getElementById("cart-name").value;
+            const phone = document.getElementById("cart-phone").value;
+            const address = document.getElementById("cart-address").value;
 
-  if (!name || !phone || !address) {
-    alert("All details are required!");
-    return;
-  }
+            if (!name || !phone || !address) {
+                alert("All details are required!");
+                return;
+            }
 
-  let list = "";
-  let total = 0;
-  cart.forEach(i => {
-    list += `${i.name} - ₹${i.price}\n`;
-    total += i.price;
-  });
+            let list = "";
+            let total = 0;
 
-  const advance = Math.ceil(total / 2);
+            cart.forEach(i => {
+                list += `${i.name} - ₹${i.price}\n`;
+                total += i.price;
+            });
 
-  const message = `🎉 New Order Received!\n\nProjects:\n${list}\nTotal: ₹${total}\n50% Advance: ₹${advance}\n\nCustomer Details:\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+            const advance = Math.ceil(total / 2);
 
-  const whatsappURL = "https://wa.me/917526960761?text=" + encodeURIComponent(message);
-  window.open(whatsappURL, "_blank");
+            const message =
+                `🟢 NEW ORDER RECEIVED!\n\n` +
+                `📦 PROJECTS:\n${list}\n` +
+                `💰 Total: ₹${total}\n` +
+                `💵 50% Advance Required: ₹${advance}\n\n` +
+                `👤 Customer:\n` +
+                `Name: ${name}\nPhone: ${phone}\nAddress: ${address}`;
 
-  localStorage.removeItem("cart");
-  updateCartCount();
-  toggleCart();
-}
+            const whatsappURL =
+                "https://wa.me/917526960761?text=" + encodeURIComponent(message);
 
-/* ------------------- Custom Project WhatsApp ------------------- */
-function submitCustom(event) {
-  event.preventDefault();
+            window.open(whatsappURL, "_blank");
 
-  const name = document.getElementById("custom-name").value;
-  const phone = document.getElementById("custom-phone").value;
-  const address = document.getElementById("custom-address").value;
-  const details = document.getElementById("custom-details").value;
+            localStorage.removeItem("cart");
+            updateCartCount();
+            toggleCart();
+        }
 
-  if(!name || !phone || !address || !details){
-    alert("All fields are required!");
-    return;
-  }
+        /* ------------------- Custom Project WhatsApp ------------------- */
+        function submitCustom(event) {
+            event.preventDefault();
 
-  const message = `Hello! I have a custom project request:\n\nDetails: ${details}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
-  const url = "https://wa.me/917526960761?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
+            const name = document.getElementById("custom-name").value;
+            const phone = document.getElementById("custom-phone").value;
+            const address = document.getElementById("custom-address").value;
+            const details = document.getElementById("custom-details").value;
 
-  document.getElementById("custom-name").value = "";
-  document.getElementById("custom-phone").value = "";
-  document.getElementById("custom-address").value = "";
-  document.getElementById("custom-details").value = "";
-}
-</script>
+            if (!name || !phone || !address || !details) {
+                alert("All fields are required!");
+                return;
+            }
+
+            const message =
+                `📝 NEW CUSTOM PROJECT REQUEST\n\n` +
+                `📄 Details: ${details}\n\n` +
+                `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 Address: ${address}`;
+
+            const url =
+                "https://wa.me/917526960761?text=" + encodeURIComponent(message);
+
+            window.open(url, "_blank");
+
+            document.getElementById("custom-name").value = "";
+            document.getElementById("custom-phone").value = "";
+            document.getElementById("custom-address").value = "";
+            document.getElementById("custom-details").value = "";
+        }
+    </script>
 
 </body>
+
 </html>
+
