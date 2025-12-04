@@ -21,7 +21,7 @@
 
     <h3 class="text-xl font-semibold mt-4">Refund & Cancellation Policy</h3>
     <p>
-      Projects can be cancelled within <strong>24 hours</strong> of order confirmation;50% of Credited payment will be Refund within 7 days.<br>
+      Projects can be cancelled within <strong>24 hours</strong> of order confirmation; 50% of Credited payment will be Refund within 7 days.<br>
       <strong>Orders cancelled after 24 hours are non-refundable, and the product will not be delivered.</strong><br>
       <strong>50% advance payment is mandatory</strong> for all orders. No cash-on-delivery or full payment later is allowed.<br>
       Refunds (where applicable) are processed within 7 working days.<br>
@@ -135,7 +135,7 @@
       <input id="cart-phone" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Phone Number" required>
       <input id="cart-address" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Address" required>
       <button type="button" onclick="sendWhatsAppOrder()" class="w-full bg-green-600 p-3 rounded-lg hover:bg-green-700">
-        Pay 50% Advance
+        Pay 50% Advance via WhatsApp
       </button>
     </form>
 
@@ -151,17 +151,17 @@
   <a href="#" onclick="showSection('policies')" class="underline hover:text-white">Policies</a>
 </footer>
 
-<!-- ===================== RAZORPAY SCRIPT ===================== -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <!-- ===================== JAVASCRIPT ===================== -->
 <script>
 /* ------------------- Policies Popup ------------------- */
 window.onload = function() {
-  document.getElementById("policies-popup").classList.remove("hidden");
+  if(!localStorage.getItem("policyAccepted")){
+    document.getElementById("policies-popup").classList.remove("hidden");
+  }
 };
 
 function acceptPolicies() {
+  localStorage.setItem("policyAccepted", "yes");
   document.getElementById("policies-popup").classList.add("hidden");
 }
 
@@ -254,7 +254,7 @@ function removeFromCart(index) {
   loadCart();
 }
 
-/* ------------------- Razorpay 50% Advance Payment ------------------- */
+/* ------------------- WhatsApp Order ------------------- */
 function sendWhatsAppOrder() {
   if (cart.length === 0) {
     alert("Cart is empty!");
@@ -277,41 +277,16 @@ function sendWhatsAppOrder() {
     total += i.price;
   });
 
-  const advance = Math.ceil(total / 2); // 50% advance
-  const remaining = total - advance;
+  const advance = Math.ceil(total / 2);
 
-  // Razorpay options
-  var options = {
-    "key": "YOUR_RAZORPAY_KEY_ID", // replace with your key
-    "amount": advance * 100,
-    "currency": "INR",
-    "name": "PunjRoBoTech",
-    "description": "50% Advance Payment",
-    "theme": { "color": "#1E90FF" },
-    "handler": function (response) {
-      const paymentID = response.razorpay_payment_id;
+  const message = `🎉 New Order Received!\n\nProjects:\n${list}\nTotal: ₹${total}\n50% Advance: ₹${advance}\n\nCustomer Details:\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
 
-      const message =
-        `🎉 New Order Received!\n
-Projects:\n${list}
-Total: ₹${total}
-Advance Paid (50%): ₹${advance}
-Remaining Balance: ₹${remaining}\n
-Customer Details:\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n
-Payment ID: ${paymentID}`;
+  const whatsappURL = "https://wa.me/917526960761?text=" + encodeURIComponent(message);
+  window.open(whatsappURL, "_blank");
 
-      const url = "https://wa.me/917526960761?text=" + encodeURIComponent(message);
-      window.open(url, "_blank");
-
-      localStorage.removeItem("cart");
-      updateCartCount();
-      toggleCart();
-    },
-    "prefill": { "name": name, "contact": phone }
-  };
-
-  var rzp1 = new Razorpay(options);
-  rzp1.open();
+  localStorage.removeItem("cart");
+  updateCartCount();
+  toggleCart();
 }
 
 /* ------------------- Custom Project WhatsApp ------------------- */
