@@ -184,16 +184,14 @@
     <!-- ===================== JAVASCRIPT ===================== -->
     <script>
         /* ------------------- Policies Popup ------------------- */
-   window.onload = function () {
-    if (!localStorage.getItem("policyAccepted")) {
-        document.getElementById("policies-popup").classList.remove("hidden");
-    }
+window.onload = function () {
+    document.getElementById("policies-popup").classList.remove("hidden");
 };
 
 function acceptPolicies() {
-    localStorage.setItem("policyAccepted", "yes");
     document.getElementById("policies-popup").classList.add("hidden");
 }
+
 
         /* ------------------- Section Navigation ------------------- */
         function showSection(id) {
