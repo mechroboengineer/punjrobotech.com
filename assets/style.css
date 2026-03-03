@@ -64,4 +64,66 @@ nav a {
   nav a {
     padding: 10px 0;
   }
+  .contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-form .form-group {
+  position: relative;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #f39c12;
+}
+
+.contact-form label {
+  position: absolute;
+  top: 1rem;
+  left: 0.5rem;
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.contact-form input:focus + label,
+.contact-form input:not(:placeholder-shown) + label,
+.contact-form textarea:focus + label,
+.contact-form textarea:not(:placeholder-shown) + label {
+  top: -0.5rem;
+  left: 0.5rem;
+  font-size: 0.8rem;
+  color: #f39c12;
+  background: #fff;
+  padding: 0 0.2rem;
+}
+
+.contact-form button {
+  padding: 0.8rem 1.5rem;
+  background: #f39c12;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #e67e22;
+}
 }
