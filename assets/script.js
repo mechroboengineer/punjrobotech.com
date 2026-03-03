@@ -1,3 +1,3 @@
 document.addEventListener("DOMContentLoaded", function () {
-console.log("PunJRoBoTech website loaded successfully.");
+console.log("PunJRoBoTech Professional Website Loaded");
 });
