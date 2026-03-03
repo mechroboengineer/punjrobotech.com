@@ -126,4 +126,9 @@ nav a {
 .contact-form button:hover {
   background: #e67e22;
 }
+  .nav-links a.active {
+  background: #f39c12;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
 }
