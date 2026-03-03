@@ -1,77 +1,114 @@
 body {
-font-family: Arial, sans-serif;
 margin: 0;
-background: #111;
+font-family: Arial, sans-serif;
+background: #0f172a;
 color: white;
 }
-header {
-    background: #000;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #222;
+
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 50px;
+background: #111827;
+position: sticky;
+top: 0;
 }
 
 .logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffcc00;
-}
-
-nav a {
-    color: #ffcc00;
-    margin-left: 20px;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: white;
-}
-
-nav a {
-color: #ffcc00;
-margin: 0 10px;
-text-decoration: none;
-}
-
-.hero {
-padding: 70px 30px;
-text-align: center;
-}
-
-.content {
-padding: 40px;
-}
-
-.project {
-background: #222;
-padding: 20px;
-margin-bottom: 20px;
-border-radius: 8px;
-}
-
-footer {
-background: #000;
-text-align: center;
-padding: 20px;
-}
-/* Floating WhatsApp Button */
-.floating-wa {
-position: fixed;
-bottom: 25px;
-right: 25px;
-background: #25D366;
-color: white;
-padding: 12px 18px;
-border-radius: 50px;
-text-decoration: none;
+font-size: 22px;
 font-weight: bold;
-box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+color: #38bdf8;
+}
+
+nav a {
+color: white;
+margin-left: 25px;
+text-decoration: none;
 transition: 0.3s;
 }
 
-.floating-wa:hover {
-background: #1ebe5d;
+nav a:hover {
+color: #38bdf8;
+}
+
+.hero {
+text-align: center;
+padding: 100px 20px;
+background: linear-gradient(to right, #1e293b, #0f172a);
+}
+
+.hero h1 {
+font-size: 42px;
+margin-bottom: 20px;
+}
+
+.btn-primary {
+display: inline-block;
+padding: 12px 25px;
+background: #38bdf8;
+color: black;
+text-decoration: none;
+border-radius: 6px;
+font-weight: bold;
+margin-top: 20px;
+}
+
+.btn-primary:hover {
+background: #0ea5e9;
+}
+
+.services {
+padding: 80px 50px;
+text-align: center;
+}
+
+.cards {
+display: flex;
+justify-content: center;
+gap: 30px;
+flex-wrap: wrap;
+margin-top: 40px;
+}
+
+.card {
+background: #1e293b;
+padding: 30px;
+width: 280px;
+border-radius: 10px;
+}
+
+.about {
+padding: 60px 50px;
+text-align: center;
+}
+
+.cta {
+padding: 80px 20px;
+text-align: center;
+background: #111827;
+}
+
+footer {
+text-align: center;
+padding: 30px;
+background: #0f172a;
+}
+
+@media (max-width: 768px) {
+
+.navbar {
+flex-direction: column;
+gap: 15px;
+}
+
+.cards {
+flex-direction: column;
+align-items: center;
+}
+
+.hero h1 {
+font-size: 28px;
+}
+
 }
