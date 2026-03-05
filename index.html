@@ -1,37 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PunjRoboTech - IoT & Arduino Projects Store</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<link rel="stylesheet" href="style.css">
-
-<script>
-tailwind.config = {
-theme: {
-extend: {
-colors: {
-primary: '#3b82f6',
-secondary: '#1e40af',
-accent: '#f59e0b',
-dark: '#0f172a'
-}
-}
-}
-}
-</script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PunjRoboTech - IoT & Arduino Projects Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body class="bg-gray-50">
-<!-- Header -->
+    <!-- Header -->
     <header class="bg-white shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
@@ -55,7 +31,204 @@ dark: '#0f172a'
             </div>
         </div>
     </header>
-        <!-- Hero Section -->
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 max-w-full flex transform transition-transform duration-300 ease-in-out z-50 hidden">
+        <div class="w-screen max-w-md">
+            <div class="h-full flex flex-col bg-white shadow-xl">
+                <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
+                    <div class="flex items-start justify-between">
+                        <h2 class="text-lg font-medium text-gray-900">Shopping Cart</h2>
+                        <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-500">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-8">
+                        <div class="flow-root">
+                            <ul id="cart-items" class="-my-6 divide-y divide-gray-200">
+                                <!-- Cart items will be loaded here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
+                    <div class="flex justify-between text-base font-medium text-gray-900">
+                        <p>Subtotal</p>
+                        <p id="cart-total">₹0.00</p>
+                    </div>
+                    <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                    <div class="mt-6">
+                        <button id="checkout-btn" onclick="showShippingMethods()" class="w-full bg-primary text-white py-3 px-4 rounded-md shadow hover:bg-secondary transition duration-300">
+                            Checkout
+                        </button>
+                    </div>
+                    <div class="mt-6 flex justify-center text-sm text-center text-gray-500">
+                        <p>
+                            or
+                            <button type="button" onclick="toggleCart()" class="text-primary font-medium hover:text-secondary">
+                                Continue Shopping<span aria-hidden="true"> &rarr;</span>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shipping Methods Modal -->
+    <div id="shipping-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Select Shipping Method</h3>
+                <button onclick="closeShippingModal()" class="text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="shipping-options" class="space-y-4">
+                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
+                     onclick="selectShippingMethod('Standard', 99)">
+                    <div class="mr-4">
+                        <i class="fas fa-truck text-gray-500 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-900">Standard Shipping</h4>
+                        <p class="text-gray-600 text-sm">Delivered in 5-7 business days</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold text-primary">₹99</p>
+                    </div>
+                </div>
+                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
+                     onclick="selectShippingMethod('Express', 299)">
+                    <div class="mr-4">
+                        <i class="fas fa-rocket text-gray-500 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-900">Express Shipping</h4>
+                        <p class="text-gray-600 text-sm">Delivered in 1-2 business days</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold text-primary">₹299</p>
+                    </div>
+                </div>
+                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
+                     onclick="selectShippingMethod('Overnight', 499)">
+                    <div class="mr-4">
+                        <i class="fas fa-bolt text-gray-500 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-900">Overnight Shipping</h4>
+                        <p class="text-gray-600 text-sm">Delivered tomorrow</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-semibold text-primary">₹499</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600">Subtotal:</p>
+                    <p id="sub-total" class="font-semibold">₹0.00</p>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600">Shipping:</p>
+                    <p id="shipping-cost" class="font-semibold">₹0.00</p>
+                </div>
+                <div class="flex justify-between items-center mb-6">
+                    <p class="text-lg font-semibold text-gray-900">Total:</p>
+                    <p id="final-total" class="text-lg font-bold text-primary">₹0.00</p>
+                </div>
+                <button onclick="showPaymentMethods()" class="w-full bg-primary text-white py-3 px-4 rounded-md shadow hover:bg-secondary transition duration-300">
+                    Proceed to Payment
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Payment Methods Modal -->
+    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Select Payment Method</h3>
+                <button onclick="closePaymentModal()" class="text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="payment-options" class="space-y-4">
+                <div class="payment-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
+                     onclick="selectPaymentMethod('UPI')">
+                    <div class="mr-4">
+                        <i class="fas fa-mobile-alt text-gray-500 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-900">UPI</h4>
+                        <p class="text-gray-600 text-sm">Pay using UPI apps like Paytm, PhonePe, etc.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600">Subtotal:</p>
+                    <p id="payment-subtotal" class="font-semibold">₹0.00</p>
+                </div>
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-gray-600">Shipping:</p>
+                    <p id="payment-shipping" class="font-semibold">₹0.00</p>
+                </div>
+                <div class="flex justify-between items-center mb-6">
+                    <p class="text-lg font-semibold text-gray-900">Total:</p>
+                    <p id="payment-total" class="text-lg font-bold text-primary">₹0.00</p>
+                </div>
+                <button onclick="showPersonalDetailsForm()" class="w-full bg-primary text-white py-3 px-4 rounded-md shadow hover:bg-secondary transition duration-300">
+                    Enter Personal Details
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Personal Details Form Modal -->
+    <div id="details-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Enter Personal Details</h3>
+                <button onclick="closeDetailsModal()" class="text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="personal-details-form" class="space-y-4">
+                <div>
+                    <label for="full-name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                    <input type="text" id="full-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                    <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                </div>
+                <div>
+                    <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                    <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                </div>
+                <div>
+                    <label for="address" class="block text-gray-700 font-medium mb-2">Address</label>
+                    <textarea id="address" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="city" class="block text-gray-700 font-medium mb-2">City</label>
+                        <input type="text" id="city" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                    </div>
+                    <div>
+                        <label for="pincode" class="block text-gray-700 font-medium mb-2">Pin Code</label>
+                        <input type="text" id="pincode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-md shadow hover:bg-secondary transition duration-300">
+                        Complete Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    <!-- Hero Section -->
     <section id="home" class="hero-bg pt-16 pb-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row items-center justify-between py-12">
@@ -85,225 +258,7 @@ dark: '#0f172a'
             </div>
         </div>
     </section>
-      <!-- Shipping Methods Modal -->
-    <div id="shipping-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold text-gray-900">Select Shipping Method</h3>
-                <button onclick="closeShippingModal()" class="text-gray-400 hover:text-gray-500">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            
-            <div id="shipping-options" class="space-y-4">
-                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
-                     onclick="selectShippingMethod('Standard', 99)">
-                    <div class="mr-4">
-                        <i class="fas fa-truck text-gray-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">Standard Shipping</h4>
-                        <p class="text-gray-600 text-sm">Delivered in 5-7 business days</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-semibold text-primary">₹99</p>
-                    </div>
-                </div>
-                
-                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
-                     onclick="selectShippingMethod('Express', 299)">
-                    <div class="mr-4">
-                        <i class="fas fa-rocket text-gray-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">Express Shipping</h4>
-                        <p class="text-gray-600 text-sm">Delivered in 1-2 business days</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-semibold text-primary">₹299</p>
-                    </div>
-                </div>
-                
-                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
-                     onclick="selectShippingMethod('Overnight', 499)">
-                    <div class="mr-4">
-                        <i class="fas fa-bolt text-gray-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">Overnight Shipping</h4>
-                        <p class="text-gray-600 text-sm">Delivered tomorrow</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-semibold text-primary">₹499</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8 pt-6 border-t border-gray-200">
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-gray-600">Subtotal:</p>
-                    <p id="sub-total" class="font-semibold">₹0.00</p>
-                </div>
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-gray-600">Shipping:</p>
-                    <p id="shipping-cost" class="font-semibold">₹0.00</p>
-                </div>
-                <div class="flex justify-between items-center mb-6">
-                    <p class="text-lg font-semibold text-gray-900">Total:</p>
-                    <p id="final-total" class="text-lg font-bold text-primary">₹0.00</p>
-                </div>
-                <button onclick="showPaymentMethods()" class="w-full bg-primary text-white py-3 px-4 rounded-md shadow hover:bg-secondary transition duration-300">
-                    Proceed to Payment
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Payment Methods Modal -->
-    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold text-gray-900">Select Payment Method</h3>
-                <button onclick="closePaymentModal()" class="text-gray-400 hover:text-gray-500">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            
-            <div id="payment-options" class="space-y-4">
-                <div class="payment-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
-                     onclick="selectPaymentMethod('UPI')">
-                    <div class="mr-4">
-                        <i class="fas fa-mobile-alt text-gray-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">UPI</h4>
-                        <p class="text-gray-600 text-sm">Pay using UPI apps like Paytm, PhonePe, etc.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8 pt-6 border-t border-gray-200">
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-gray-600">Subtotal:</p>
-                    <p id="payment-subtotal" class="font-semibold">₹0.00</p>
-                </div>
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-gray-600">Shipping:</p>
-                    <p id="payment-shipping" class="font-semibold">₹0.00</p>
-                </div>
-                <div class="flex justify-between items-center mb-6">
-                    <p class="text-lg font-semibold text-gray-900">Total:</p>
-                    <p id="payment-total" class="text-lg font-bold text-primary">₹0.00</p>
-                </div>
-                <button onclick="showPersonalDetailsForm()" class="w-full bg-primary text-white py-3 px-4 rounded-md shadow hover:bg-secondary transition duration-300">
-                    Enter Personal Details
-                </button>
-            </div>
-        </div>
-    </div>
- <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About PunjRoboTech</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Empowering makers, engineers, and innovators with cutting-edge technologies
-                </p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2 fade-in">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&h=400&q=80" alt="IoT Projects" class="rounded-xl shadow-lg">
-                        <div class="absolute -bottom-6 -right-6 bg-primary text-white p-4 rounded-lg shadow-lg">
-                            <i class="fas fa-chip text-2xl"></i>
-                            <p class="font-bold mt-2">Innovative Solutions</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 fade-in">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Building the Future, One Circuit at a Time</h3>
-                    <p class="text-gray-600 mb-6">
-                        We're passionate about making the world of Internet of Things (IoT) and Arduino accessible to everyone. Whether you're a beginner exploring microcontrollers or an experienced developer building complex smart systems, we have everything you need to bring your ideas to life.
-                    </p>
-                    <p class="text-gray-600 mb-6">
-                        Our carefully curated collection includes sensors, modules, development boards, and complete kits that enable you to create everything from simple home automation projects to sophisticated industrial applications.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Quality Components</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Expert Support</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Fast Shipping</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Easy Returns</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Personal Details Form Modal -->
-    <div id="details-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold text-gray-900">Enter Personal Details</h3>
-                <button onclick="closeDetailsModal()" class="text-gray-400 hover:text-gray-500">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            
-            <form id="personal-details-form" class="space-y-4">
-                <div>
-                    <label for="full-name" class="block text-gray-700 font-medium mb-2">Full Name</label>
-                    <input type="text" id="full-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                </div>
-                
-                <div>
-                    <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                    <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                </div>
-                
-                <div>
-                    <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
-                    <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                </div>
-                
-                <div>
-                    <label for="address" class="block text-gray-700 font-medium mb-2">Address</label>
-                    <textarea id="address" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="city" class="block text-gray-700 font-medium mb-2">City</label>
-                        <input type="text" id="city" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                    </div>
-                    
-                    <div>
-                        <label for="pincode" class="block text-gray-700 font-medium mb-2">Pin Code</label>
-                        <input type="text" id="pincode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" required>
-                    </div>
-                </div>
-                
-                <div class="mt-8">
-                    <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-md shadow hover:bg-secondary transition duration-300">
-                        Complete Order
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-     <!-- Features Section -->
+    <!-- Features Section -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -312,7 +267,6 @@ dark: '#0f172a'
                     We provide everything you need to bring your IoT and Arduino ideas to life
                 </p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition duration-300">
                     <div class="feature-icon w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
@@ -321,7 +275,6 @@ dark: '#0f172a'
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Fast Delivery</h3>
                     <p class="text-gray-600">Get your components delivered quickly with our reliable shipping partners</p>
                 </div>
-                
                 <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition duration-300">
                     <div class="feature-icon w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-tools text-white text-2xl"></i>
@@ -329,7 +282,6 @@ dark: '#0f172a'
                     <h3 class="text-xl font-semibold text-gray-900 mb-2">Quality Components</h3>
                     <p class="text-gray-600">Premium quality parts sourced from trusted manufacturers worldwide</p>
                 </div>
-                
                 <div class="text-center p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition duration-300">
                     <div class="feature-icon w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-headset text-white text-2xl"></i>
@@ -340,7 +292,7 @@ dark: '#0f172a'
             </div>
         </div>
     </section>
-     <!-- About Section -->
+    <!-- About Section -->
     <section id="about" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -349,7 +301,6 @@ dark: '#0f172a'
                     Empowering makers, engineers, and innovators with cutting-edge technologies
                 </p>
             </div>
-            
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2 fade-in">
                     <div class="relative">
@@ -399,7 +350,6 @@ dark: '#0f172a'
                     Hands-on tutorials and ready-to-build projects for all skill levels
                 </p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
                 <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
@@ -423,7 +373,6 @@ dark: '#0f172a'
                         </div>
                     </div>
                 </div>
-
                 <!-- Project 2 -->
                 <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
                     <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500 relative">
@@ -446,7 +395,6 @@ dark: '#0f172a'
                         </div>
                     </div>
                 </div>
-
                 <!-- Project 3 -->
                 <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
                     <div class="h-48 bg-gradient-to-r from-yellow-400 to-orange-500 relative">
@@ -469,7 +417,6 @@ dark: '#0f172a'
                         </div>
                     </div>
                 </div>
-
                 <!-- Project 4 -->
                 <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
                     <div class="h-48 bg-gradient-to-r from-red-400 to-orange-500 relative">
@@ -493,7 +440,6 @@ dark: '#0f172a'
                     </div>
                 </div>
             </div>
-            
             <div class="text-center mt-12">
                 <button onclick="scrollToSection('projects')" class="border-2 border-primary text-primary font-semibold py-3 px-8 rounded-lg hover:bg-primary hover:text-white transition duration-300">
                     View All Projects
@@ -501,7 +447,7 @@ dark: '#0f172a'
             </div>
         </div>
     </section>
-<!-- Contact Section -->
+    <!-- Contact Section -->
     <section id="contact" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -510,7 +456,6 @@ dark: '#0f172a'
                     Have questions about our PunjRoboTech products or projects?
                 </p>
             </div>
-            
             <div class="flex flex-col md:flex-row gap-12">
                 <div class="md:w-1/2">
                     <form id="contact-form" class="space-y-6">
@@ -535,11 +480,9 @@ dark: '#0f172a'
                         </button>
                     </form>
                 </div>
-                
                 <div class="md:w-1/2">
                     <div class="bg-white p-8 rounded-xl shadow-lg h-full">
                         <h3 class="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h3>
-                        
                         <div class="space-y-6">
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 bg-primary p-3 rounded-lg">
@@ -550,7 +493,6 @@ dark: '#0f172a'
                                     <p class="text-gray-600">Phagwara, India</p>
                                 </div>
                             </div>
-                            
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 bg-primary p-3 rounded-lg">
                                     <i class="fas fa-envelope text-white text-xl"></i>
@@ -560,7 +502,6 @@ dark: '#0f172a'
                                     <p class="text-gray-600">mechroboenginner@gmail.com</p>
                                 </div>
                             </div>
-                            
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 bg-primary p-3 rounded-lg">
                                     <i class="fas fa-phone text-white text-xl"></i>
@@ -570,7 +511,6 @@ dark: '#0f172a'
                                     <p class="text-gray-600">+91 75269-60761</p>
                                 </div>
                             </div>
-                            
                             <div class="pt-6">
                                 <h4 class="text-lg font-medium text-gray-900 mb-4">Follow Us</h4>
                                 <div class="flex space-x-4">
@@ -594,8 +534,6 @@ dark: '#0f172a'
             </div>
         </div>
     </section>
-    <!-- Cart Overlay -->
-    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
     <!-- Footer -->
     <footer class="bg-dark text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -608,7 +546,6 @@ dark: '#0f172a'
                         Empowering makers and developers with cutting-edge IoT and Arduino solutions.
                     </p>
                 </div>
-                
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
@@ -618,7 +555,6 @@ dark: '#0f172a'
                         <li><button onclick="scrollToSection('contact')" class="text-gray-400 hover:text-white transition duration-300">Contact</button></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Categories</h3>
                     <ul class="space-y-2">
@@ -628,7 +564,6 @@ dark: '#0f172a'
                         <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Accessories</a></li>
                     </ul>
                 </div>
-                
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
                     <p class="text-gray-400 mb-4">Subscribe for project updates and exclusive deals</p>
@@ -640,15 +575,14 @@ dark: '#0f172a'
                     </div>
                 </div>
             </div>
-            
             <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
                 <p>&copy; 2023 PunjRoboTech. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-<script src="script.js"></script>
-
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="scroll-top bg-primary text-white p-3 rounded-full shadow-lg">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html>
-
