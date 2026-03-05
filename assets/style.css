@@ -1,134 +1,108 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background: rgba(15,23,42,0.95);
-  backdrop-filter: blur(10px);
-  position: relative;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #38bdf8;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-}
-
-.nav-btn {
-  background: #38bdf8;
-  padding: 8px 15px;
-  border-radius: 5px;
-  color: black;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-
-  .menu-toggle {
-    display: block;
-  }
-
-  nav {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background: #0f172a;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    display: none;
-  }
-
-  nav.active {
-    display: flex;
-  }
-
-  nav a {
-    padding: 10px 0;
-  }
-  .contact-form {
-  max-width: 600px;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.contact-form .form-group {
-  position: relative;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 1rem 0.5rem 0.5rem 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-  transition: 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #f39c12;
-}
-
-.contact-form label {
-  position: absolute;
-  top: 1rem;
-  left: 0.5rem;
-  color: #888;
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.contact-form input:focus + label,
-.contact-form input:not(:placeholder-shown) + label,
-.contact-form textarea:focus + label,
-.contact-form textarea:not(:placeholder-shown) + label {
-  top: -0.5rem;
-  left: 0.5rem;
-  font-size: 0.8rem;
-  color: #f39c12;
-  background: #fff;
-  padding: 0 0.2rem;
-}
-
-.contact-form button {
-  padding: 0.8rem 1.5rem;
-  background: #f39c12;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.contact-form button:hover {
-  background: #e67e22;
-}
-  .nav-links a.active {
-  background: #f39c12;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-}
-}
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+        }
+        .nav-link.active {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .iot-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #f59e0b;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .arduino-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: #ef4444;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .cart-item {
+            transition: all 0.3s ease;
+        }
+        .cart-item:hover {
+            transform: translateX(5px);
+        }
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        .feature-icon:hover {
+            transform: scale(1.1);
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .shipping-method {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .shipping-method.selected {
+            border-color: #3b82f6;
+            background-color: #dbeafe;
+        }
+        .payment-method {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .payment-method.selected {
+            border-color: #3b82f6;
+            background-color: #dbeafe;
+        }
+        .personal-details-form {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+        }
+        .personal-details-form.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+    </style>
