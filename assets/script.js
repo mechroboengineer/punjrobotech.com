@@ -319,3 +319,8 @@
             this.reset();
         });
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="scroll-top bg-primary text-white p-3 rounded-full shadow-lg">
+        <i class="fas fa-arrow-up"></i>
+    </button>
