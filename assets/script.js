@@ -1,4 +1,18 @@
- <script>
+tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e40af',
+                        accent: '#f59e0b',
+                        dark: '#0f172a'
+                    }
+                }
+            }
+        }
+    
+
+
         // Cart functionality
         let cart = [];
         let total = 0;
@@ -318,9 +332,3 @@
             // Reset form
             this.reset();
         });
-    </script>
-
-    <!-- Scroll to Top Button -->
-    <button id="scroll-top" class="scroll-top bg-primary text-white p-3 rounded-full shadow-lg">
-        <i class="fas fa-arrow-up"></i>
-    </button>
