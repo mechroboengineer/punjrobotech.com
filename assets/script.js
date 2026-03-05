@@ -11,14 +11,29 @@ tailwind.config = {
             }
         }
     
+et cart = [];
+let total = 0;
+let selectedShipping = null;
+let selectedPayment = null;
 
+function addToCart(name, price) {
+    const existingItem = cart.find(item => item.name === name);
 
-        // Cart functionality
-        let cart = [];
-        let total = 0;
-        let selectedShipping = null;
-        let selectedPayment = null;
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
 
+    updateCartDisplay();
+    showNotification(${name} added to cart!);
+}
+
+    
         function addToCart(name, price) {
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
