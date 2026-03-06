@@ -1,4 +1,4 @@
-/ Cart functionality
+// Cart functionality
 let cart = [];
 let total = 0;
 let selectedShipping = null;
@@ -317,4 +317,3 @@ document.getElementById('personal-details-form').addEventListener('submit', func
     // Reset form
     this.reset();
 });
-
