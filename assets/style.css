@@ -1,24 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-body {
-    font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-}
-
-.project-card:hover {
-    transform: scale(1.03);
-}
-
-.nav-link.active {
-    color: #3b82f6;
-    border-bottom: 2px solid #3b82f6;
-}
- .hero-bg {
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+        }
+        .nav-link.active {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+        .hero-bg {
             background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
         }
         .fade-in {
@@ -67,45 +63,4 @@ body {
         .feature-icon {
             transition: all 0.3s ease;
         }
-        .feature-icon:hover {
-            transform: scale(1.1);
-        }
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .shipping-method {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .shipping-method.selected {
-            border-color: #3b82f6;
-            background-color: #dbeafe;
-        }
-        .payment-method {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .payment-method.selected {
-            border-color: #3b82f6;
-            background-color: #dbeafe;
-        }
-        .personal-details-form {
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            visibility: hidden;
-        }
-        .personal-details-form.show {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-        }
+        .feature-icon:hove
