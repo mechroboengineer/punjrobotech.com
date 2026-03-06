@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-
+!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PunjRoboTech - IoT & Arduino Projects Store</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PunjRoboTech - IoT & Arduino Projects Store</title>
+    
+    <!-- Tailwind FIRST with config -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,34 +21,14 @@
             }
         }
     </script>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50">
-<!-- Header -->
-<header class="bg-white shadow-lg fixed w-full z-50">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex justify-between h-16">
-<div class="flex items-center">
-<span class="text-2xl font-bold text-primary flex items-center">
-<i class="fas fa-microchip mr-2"></i> PunjRoboTech
-                    </span>
-</div>
-<div class="hidden md:flex items-center space-x-8">
-<button class="text-gray-700 hover:text-primary transition duration-300 nav-link" onclick="scrollToSection('home')">Home</button>
-<button class="text-gray-700 hover:text-primary transition duration-300 nav-link" onclick="scrollToSection('projects')">Projects</button>
-<button class="text-gray-700 hover:text-primary transition duration-300 nav-link" onclick="scrollToSection('about')">About</button>
-<button class="text-gray-700 hover:text-primary transition duration-300 nav-link" onclick="scrollToSection('contact')">Contact</button>
-</div>
-<div class="flex items-center">
-<button class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition duration-300 relative" onclick="toggleCart()">
-<i class="fas fa-shopping-cart text-gray-700"></i>
-<span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cart-count">0</span>
-</button>
-</div>
-</div>
-</div>
-</header>
 <!-- Cart Sidebar -->
 <div class="fixed inset-y-0 right-0 max-w-full flex transform transition-transform duration-300 ease-in-out z-50 hidden" id="cart-sidebar">
 <div class="w-screen max-w-md">
