@@ -140,6 +140,22 @@
             border-color: #3b82f6;
             background-color: #dbeafe;
         }
+        .order-type {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .order-type.selected {
+            border-color: #3b82f6;
+            background-color: #dbeafe;
+        }
+        .international-shipping {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .international-shipping.selected {
+            border-color: #3b82f6;
+            background-color: #dbeafe;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -262,6 +278,42 @@
         </div>
     </div>
 
+    <!-- Order Type Selection Modal -->
+    <div id="order-type-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Select Order Type</h3>
+                <button onclick="closeOrderTypeModal()" class="text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="order-type-options" class="space-y-4">
+                <div class="order-type border-2 border-gray-200 rounded-lg p-4 flex items-center"
+                     onclick="selectOrderType('India Wide')">
+                    <div class="mr-4">
+                        <i class="fas fa-flag text-gray-500 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-900">India Wide Shipping</h4>
+                        <p class="text-gray-600 text-sm">Delivery within India</p>
+                    </div>
+                </div>
+                
+                <div class="order-type border-2 border-gray-200 rounded-lg p-4 flex items-center"
+                     onclick="selectOrderType('International')">
+                    <div class="mr-4">
+                        <i class="fas fa-globe-americas text-gray-500 text-2xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold text-gray-900">International Shipping</h4>
+                        <p class="text-gray-600 text-sm">Delivery worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Shipping Methods Modal -->
     <div id="shipping-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
@@ -273,47 +325,7 @@
             </div>
             
             <div id="shipping-options" class="space-y-4">
-                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
-                     onclick="selectShippingMethod('Standard', 99)">
-                    <div class="mr-4">
-                        <i class="fas fa-truck text-gray-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">Standard Shipping</h4>
-                        <p class="text-gray-600 text-sm">Delivered in 5-7 business days</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-semibold text-primary">₹99</p>
-                    </div>
-                </div>
-                
-                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
-                     onclick="selectShippingMethod('Express', 299)">
-                    <div class="mr-4">
-                        <i class="fas fa-rocket text-gray-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">Express Shipping</h4>
-                        <p class="text-gray-600 text-sm">Delivered in 1-2 business days</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-semibold text-primary">₹299</p>
-                    </div>
-                </div>
-                
-                <div class="shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center"
-                     onclick="selectShippingMethod('Overnight', 499)">
-                    <div class="mr-4">
-                        <i class="fas fa-bolt text-gray-500 text-2xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="font-semibold text-gray-900">Overnight Shipping</h4>
-                        <p class="text-gray-600 text-sm">Delivered tomorrow</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="font-semibold text-primary">₹499</p>
-                    </div>
-                </div>
+                <!-- Shipping options will be dynamically populated based on order type -->
             </div>
             
             <div class="mt-8 pt-6 border-t border-gray-200">
@@ -825,6 +837,7 @@
         let selectedComponent = null;
         let selectedProject = null;
         let projectPrice = 0;
+        let selectedOrderType = null;
 
         function openComponentSelector(name, price) {
             selectedProject = name;
@@ -838,27 +851,27 @@
             document.body.style.overflow = 'auto';
         }
 
-      function selectComponentType(type, additionalCost) {
-    // Remove selected class from all options
-    document.querySelectorAll('.component-option').forEach(el => {
-        el.classList.remove('selected');
-    });
-    
-    // Add selected class to clicked option
-    event.currentTarget.classList.add('selected');
-    
-    selectedComponent = { type, additionalCost };
-    
-    // Calculate total component price
-    const componentTotal = projectPrice + additionalCost;
-    document.getElementById('component-total').textContent = `₹${componentTotal.toFixed(2)}`;
-    
-    // Add item to cart with updated price
-    addToCart(selectedProject, componentTotal);
-    
-    // Close component modal
-    closeComponentModal();
-}
+        function selectComponentType(type, additionalCost) {
+            // Remove selected class from all options
+            document.querySelectorAll('.component-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            event.currentTarget.classList.add('selected');
+            
+            selectedComponent = { type, additionalCost };
+            
+            // Calculate total component price
+            const componentTotal = projectPrice + additionalCost;
+            document.getElementById('component-total').textContent = `₹${componentTotal.toFixed(2)}`;
+            
+            // Add item to cart with updated price
+            addToCart(selectedProject, componentTotal);
+            
+            // Close component modal
+            closeComponentModal();
+        }
 
         function addToCart(name, price) {
             const existingItem = cart.find(item => item.name === name);
@@ -1063,13 +1076,92 @@
                 return;
             }
             
+            // Show order type selection modal
+            document.getElementById('order-type-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOrderTypeModal() {
+            document.getElementById('order-type-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectOrderType(orderType) {
+            selectedOrderType = orderType;
+            closeOrderTypeModal();
+            
             // Calculate subtotal
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             document.getElementById('sub-total').textContent = `₹${subtotal.toFixed(2)}`;
             
-            // Show modal
+            // Populate shipping options based on order type
+            populateShippingOptions(orderType);
+            
+            // Show shipping modal
             document.getElementById('shipping-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+        }
+
+        function populateShippingOptions(orderType) {
+            const shippingOptionsContainer = document.getElementById('shipping-options');
+            shippingOptionsContainer.innerHTML = '';
+            
+            if (orderType === 'India Wide') {
+                // Show all shipping options for India wide
+                const shippingOptions = [
+                    {method: 'Standard', cost: 99},
+                    {method: 'Express', cost: 299},
+                    {method: 'Overnight', cost: 499}
+                ];
+                
+                shippingOptions.forEach(option => {
+                    const shippingOption = document.createElement('div');
+                    shippingOption.className = 'shipping-method border-2 border-gray-200 rounded-lg p-4 flex items-center';
+                    shippingOption.onclick = function() {
+                        selectShippingMethod(option.method, option.cost);
+                    };
+                    shippingOption.innerHTML = `
+                        <div class="mr-4">
+                            <i class="fas fa-truck text-gray-500 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900">${option.method} Shipping</h4>
+                            <p class="text-gray-600 text-sm">Delivered in ${option.method === 'Standard' ? '5-7' : option.method === 'Express' ? '1-2' : '1'} business days</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-primary">₹${option.cost.toFixed(2)}</p>
+                        </div>
+                    `;
+                    shippingOptionsContainer.appendChild(shippingOption);
+                });
+            } else {
+                // Show only 2 options for international
+                const shippingOptions = [
+                    {method: 'Standard', cost: 499},
+                    {method: 'Express', cost: 1299}
+                ];
+                
+                shippingOptions.forEach(option => {
+                    const shippingOption = document.createElement('div');
+                    shippingOption.className = 'international-shipping border-2 border-gray-200 rounded-lg p-4 flex items-center';
+                    shippingOption.onclick = function() {
+                        selectShippingMethod(option.method, option.cost);
+                    };
+                    shippingOption.innerHTML = `
+                        <div class="mr-4">
+                            <i class="fas fa-plane text-gray-500 text-2xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900">${option.method} International Shipping</h4>
+                            <p class="text-gray-600 text-sm">Delivered in ${option.method === 'Standard' ? '10-15' : '3-5'} business days</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-primary">₹${option.cost.toFixed(2)}</p>
+                        </div>
+                    `;
+                    shippingOptionsContainer.appendChild(shippingOption);
+                });
+            }
         }
 
         function closeShippingModal() {
@@ -1079,9 +1171,15 @@
 
         function selectShippingMethod(method, cost) {
             // Remove selected class from all options
-            document.querySelectorAll('.shipping-method').forEach(el => {
-                el.classList.remove('selected');
-            });
+            if (selectedOrderType === 'India Wide') {
+                document.querySelectorAll('.shipping-method').forEach(el => {
+                    el.classList.remove('selected');
+                });
+            } else {
+                document.querySelectorAll('.international-shipping').forEach(el => {
+                    el.classList.remove('selected');
+                });
+            }
             
             // Add selected class to clicked option
             event.currentTarget.classList.add('selected');
