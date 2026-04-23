@@ -156,6 +156,10 @@
             border-color: #3b82f6;
             background-color: #dbeafe;
         }
+        .international-shipping.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -1135,17 +1139,30 @@
                     shippingOptionsContainer.appendChild(shippingOption);
                 });
             } else {
-                // Show only 2 options for international
+                // Show only 2 options for international (one disabled when Local Components selected)
                 const shippingOptions = [
-                    {method: 'Standard', cost: 499},
-                    {method: 'Express', cost: 1299}
+                    {method: 'Standard', cost: 499, disabled: false},
+                    {method: 'Express', cost: 1299, disabled: false}
                 ];
                 
                 shippingOptions.forEach(option => {
+                    // Check if we're disabling the international shipping due to local components selection
+                    let disabledClass = '';
+                    let disabledReason = '';
+                    
+                    // Only disable if local components were selected in previous step
+                    if (selectedComponent && selectedComponent.type === 'Local Components') {
+                        option.disabled = true;
+                        disabledClass = 'disabled';
+                        disabledReason = 'Not available for local components';
+                    }
+                    
                     const shippingOption = document.createElement('div');
-                    shippingOption.className = 'international-shipping border-2 border-gray-200 rounded-lg p-4 flex items-center';
+                    shippingOption.className = `international-shipping border-2 border-gray-200 rounded-lg p-4 flex items-center ${disabledClass}`;
                     shippingOption.onclick = function() {
-                        selectShippingMethod(option.method, option.cost);
+                        if (!option.disabled) {
+                            selectShippingMethod(option.method, option.cost);
+                        }
                     };
                     shippingOption.innerHTML = `
                         <div class="mr-4">
@@ -1154,6 +1171,7 @@
                         <div class="flex-1">
                             <h4 class="font-semibold text-gray-900">${option.method} International Shipping</h4>
                             <p class="text-gray-600 text-sm">Delivered in ${option.method === 'Standard' ? '10-15' : '3-5'} business days</p>
+                            ${option.disabled ? `<p class="text-red-500 text-xs mt-1">${disabledReason}</p>` : ''}
                         </div>
                         <div class="text-right">
                             <p class="font-semibold text-primary">₹${option.cost.toFixed(2)}</p>
